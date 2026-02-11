@@ -48,7 +48,7 @@ const ReportDetails = (props) => {
                 <p>Date and Time: {report.reported_at}</p>
                 <p>Source Type: {report.water_source}</p>
                 <p>Feature Type: {report.water_feature}</p>
-                <p>Location: {report.location_lat} {report.location_long}</p>
+                <p>Location: Latitude - {report.location_lat} Longitude - {report.location_long}</p>
                 <p>Observation: {report.observation}</p>
                 <p>Condition: {report.condition}</p>
                 <p>Status: {report.status}</p>
@@ -76,4 +76,4 @@ const ReportDetails = (props) => {
     );
 };
 
-export default HootDetails;
+export default ReportDetails;

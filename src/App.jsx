@@ -9,8 +9,8 @@ import Landing from './components/Landing/Landing';
 import Dashboard from './components/Dashboard/Dashboard';
 import * as reportService from './services/reportService';
 import ReportList from './components/ReportList/ReportList';
-// import ReportDetails from './components/ReportDetails/ReportDetails';
-// import ReportForm from './components/ReportForm/ReportForm';
+import ReportDetails from './components/ReportDetails/ReportDetails';
+import ReportForm from './components/ReportForm/ReportForm';
 
 
 const App = () => {
@@ -56,9 +56,9 @@ const App = () => {
           <>
             {/* Protected routes (available only to signed-in users) */}
             <Route path='/reports' element={<ReportList reports={reports} />} />
-            {/* <Route path='/reports/:reportId' element={<ReportDetails handleDeleteReport={handleDeleteReport} />} />
+            <Route path='/reports/:reportId' element={<ReportDetails handleDeleteReport={handleDeleteReport} />} />
             <Route path='/reports/new' element={<ReportForm handleAddReport={handleAddReport} />} />
-            <Route path='/reports/:reportId/edit' element={<ReportForm handleUpdateReport={handleUpdateReport} />} /> */}
+            <Route path='/reports/:reportId/edit' element={<ReportForm handleUpdateReport={handleUpdateReport} />} />
           </>
         ) : (
           <>
