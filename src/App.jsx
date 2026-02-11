@@ -5,7 +5,8 @@ import { UserContext } from './contexts/UserContext';
 import NavBar from './components/NavBar/NavBar';
 import SignUpForm from './components/SignUpForm/SignUpForm';
 import SignInForm from './components/SignInForm/SignInForm';
-import Landing from './components/Landing/Landing';
+import LandingPage from './components/LandingPage/LandingPage';
+import HomePage from './components/HomePage/HomePage';
 import Dashboard from './components/Dashboard/Dashboard';
 import * as reportService from './services/reportService';
 import ReportList from './components/ReportList/ReportList';
@@ -51,7 +52,7 @@ const App = () => {
     <>
       <NavBar />
       <Routes>
-        <Route path='/' element={user ? <Dashboard /> : <Landing />} />
+        <Route path='/' element={user ? <HomePage /> : <LandingPage />} />
         {user ? (
           <>
             {/* Protected routes (available only to signed-in users) */}
@@ -59,6 +60,7 @@ const App = () => {
             <Route path='/reports/:reportId' element={<ReportDetails handleDeleteReport={handleDeleteReport} />} />
             <Route path='/reports/new' element={<ReportForm handleAddReport={handleAddReport} />} />
             <Route path='/reports/:reportId/edit' element={<ReportForm handleUpdateReport={handleUpdateReport} />} />
+            <Route path="/dashboard" element={<Dashboard />} />
           </>
         ) : (
           <>
