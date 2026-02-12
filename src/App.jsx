@@ -34,7 +34,6 @@ const App = () => {
     setReports([newReport, ...reports]);
     navigate('/reports');
   };
-  console.log(reports);
 
   const handleDeleteReport = async (reportId) => {
     const deletedReport = await reportService.deleteReport(reportId);

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import * as reportService from '../../services/reportService';
+import LocationPicker from '../LocationPicker/LocationPicker';
 
 const ReportForm = ( { handleAddReport, handleUpdateReport } ) => {
     // Destructure hootId from the useParams hook, and console log it
@@ -12,6 +13,7 @@ const ReportForm = ( { handleAddReport, handleUpdateReport } ) => {
         water_feature: '',
         location_lat: '', 
         location_long: '',
+        location_name: '',
         observation: '',
         condition: '',
         status: '',
@@ -19,6 +21,8 @@ const ReportForm = ( { handleAddReport, handleUpdateReport } ) => {
 
     // Add a new useState for your image
     const [imageFile, setImageFile] = useState(null)
+
+    const [showMap, setShowMap] = useState(false);
 
     // Helper function
     const formatDateTimeLocal = (dateString) => {
@@ -42,6 +46,7 @@ const ReportForm = ( { handleAddReport, handleUpdateReport } ) => {
                 water_feature: reportData.water_feature || '',
                 location_lat: reportData.location_lat || '',
                 location_long: reportData.location_long || '',
+                location_name: reportData.location_name || '',
                 observation: reportData.observation || '',
                 condition: reportData.condition || '',
                 status: reportData.status || '',
@@ -142,25 +147,42 @@ const ReportForm = ( { handleAddReport, handleUpdateReport } ) => {
                     <option value='Other'>Other</option>
                 </select>
 
-                <label htmlFor="location_lat-input">Latitude</label>
-                <input
-                required
-                type="number"
-                name="location_lat"
-                id="location_lat-input"
-                value={formData.location_lat || ''}
-                onChange={handleChange}
-                />
+                {/* <label>Pick Location</label>
+                <LocationPicker formData={formData} setFormData={setFormData} /> */}
 
-                <label htmlFor="location_long-input">Longitude</label>
-                <input
-                required
-                type="number"
-                name="location_long"
-                id="location_long-input"
-                value={formData.location_long || ''}
-                onChange={handleChange}
-                />
+                <label>Location</label>
+
+                <button
+                    type="button"
+                    onClick={() => setShowMap(prev => !prev)}
+                    style={{ marginBottom: '1rem' }}
+                >
+                    {showMap ? 'Hide Map' : 'Pick Location on Map'}
+                </button>
+
+                {formData.location_lat && formData.location_long && (
+                    <p>
+                        Selected: {formData.location_lat.toFixed(5)}, {formData.location_long.toFixed(5)}
+                    </p>
+                )}
+
+                {showMap && (
+                    <LocationPicker formData={formData} setFormData={setFormData} />
+                )}
+
+                {/* Show selected coordinates
+                {formData.location_lat && formData.location_long && (
+                <p>
+                    Selected: {formData.location_lat.toFixed(5)}, {formData.location_long.toFixed(5)}
+                </p>
+                )} */}
+
+                {formData.location_name && (
+                <p>
+                    🏙 {formData.location_name}
+                </p>
+                )}
+
 
                 <label htmlFor='observation-input'>Observation</label>
                 <textarea
