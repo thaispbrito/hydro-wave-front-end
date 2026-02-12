@@ -10,7 +10,7 @@ const ReportList = (props) => {
                             <h2>{report.title}</h2>
                             <p>
                                 {`${report.author_username} posted on
-                                ${new Date(report.createdAt).toLocaleDateString()}`}
+                                ${new Date(report.created_at).toLocaleDateString()}`}
                             </p>
                         </header>
                         <p>{report.observation}</p>

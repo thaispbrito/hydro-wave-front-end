@@ -29,7 +29,6 @@ const ReportDetails = (props) => {
         <main>
             <section>
                 <header>
-                    <p>{report.category.toUpperCase()}</p>
                     <h1>{report.title}</h1>
                     <p>
                         {`${report.author_username} posted on
@@ -48,11 +47,12 @@ const ReportDetails = (props) => {
                 <p>Date and Time: {report.reported_at}</p>
                 <p>Source Type: {report.water_source}</p>
                 <p>Feature Type: {report.water_feature}</p>
-                <p>Location: Latitude - {report.location_lat} Longitude - {report.location_long}</p>
+                <p>Location: Latitude - {report.location_lat} | Longitude - {report.location_long}</p>
                 <p>Observation: {report.observation}</p>
                 <p>Condition: {report.condition}</p>
                 <p>Status: {report.status}</p>
-                <p>Image: {report.image_url}</p>
+                <img src={report.image_url} width={300} alt={report.title} />
+
             </section>
             <section>
                 <h2>Comments</h2>

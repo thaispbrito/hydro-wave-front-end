@@ -31,9 +31,8 @@ const create = async (reportFormData) => {
             method: 'POST',
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
-                'Content-Type': 'application/json',
             },
-            body: JSON.stringify(reportFormData),
+            body: reportFormData,
         });
         return res.json();
     } catch (error) {
@@ -95,9 +94,8 @@ const updateReport = async (reportId, reportFormData) => {
             method: 'PUT',
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
-                'Content-Type': 'application/json',
             },
-            body: JSON.stringify(reportFormData),
+            body: reportFormData,
         });
         return res.json();
     } catch (error) {

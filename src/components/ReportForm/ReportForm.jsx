@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import * as reportService from '../../services/reportService';
 
-const ReportForm = (props) => {
+const ReportForm = ( { handleAddReport, handleUpdateReport } ) => {
     // Destructure hootId from the useParams hook, and console log it
     const { reportId } = useParams();
     const [formData, setFormData] = useState({
@@ -10,23 +10,49 @@ const ReportForm = (props) => {
         reported_at: '',
         water_source: '',
         water_feature: '',
-        location_lat: null, 
-        location_long: null,
+        location_lat: '', 
+        location_long: '',
         observation: '',
         condition: '',
         status: '',
-        image_url: null,
-
     });
+
+    // Add a new useState for your image
+    const [imageFile, setImageFile] = useState(null)
+
+    // Helper function
+    const formatDateTimeLocal = (dateString) => {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    return `${year}-${month}-${day}T${hours}:${minutes}`;
+    };
 
     useEffect(() => {
         const fetchReport = async () => {
-            const reportData = await reportService.show(reportId);
-            setFormData(reportData);
-        };
-        if (reportId) fetchReport();
-        return () => setFormData({ title: '', reported_at: '', water_source: '', water_feature: '', location_lat: null, location_long: null, observation: '', condition: '', status: '', image_url: '' });
-    }, [reportId]);
+            if (!reportId) return
+            const reportData = await reportService.show(reportId)
+            setFormData({
+                title: reportData.title || '',
+                reported_at: reportData.reported_at || '',
+                water_source: reportData.water_source || '',
+                water_feature: reportData.water_feature || '',
+                location_lat: reportData.location_lat || '',
+                location_long: reportData.location_long || '',
+                observation: reportData.observation || '',
+                condition: reportData.condition || '',
+                status: reportData.status || '',
+                // add image_url to the formData
+                // we want to see if a report already has an image when we go to edit the report
+                image_url: reportData.image_url || '',
+            })
+        }
+        fetchReport()
+    }, [reportId])
+
 
     const handleChange = (evt) => {
         setFormData({ ...formData, [evt.target.name]: evt.target.value });
@@ -34,10 +60,32 @@ const ReportForm = (props) => {
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
+
+
+        // FormData allows us to send text and files to our backend
+        const data = new FormData()
+
+        // append (add) the form values to FormData
+        data.append('title', formData.title)
+        data.append('reported_at', formData.reported_at)
+        data.append('water_source', formData.water_source)
+        data.append('water_feature', formData.water_feature)
+        data.append('location_lat', formData.location_lat)
+        data.append('location_long', formData.location_long)
+        data.append('observation', formData.observation)
+        data.append('condition', formData.condition)
+        data.append('status', formData.status)
+
+        if (imageFile) {
+            data.append('image_url', imageFile)
+        }
+
         if (reportId) {
-            props.handleUpdateReport(reportId, formData);
+            // send the updated data to the backend
+            handleUpdateReport(reportId, data);
         } else {
-            props.handleAddReport(formData);
+            // send the new data to the backend
+            handleAddReport(data);
         }
     };
 
@@ -54,15 +102,16 @@ const ReportForm = (props) => {
                     value={formData.title}
                     onChange={handleChange}
                 />
-                <label htmlFor='created_at-input'>Date and Time</label>
-                <textarea
+                <label htmlFor='reported_at-input'>Date and Time</label>
+                <input
                     required
                     type='datetime-local'
-                    name='created_at'
-                    id='created_at-input'
-                    value={formData.created_at}
+                    name='reported_at'
+                    id='reported_at-input'
+                    value={formData.reported_at ? formatDateTimeLocal(formData.reported_at) : ''}
                     onChange={handleChange}
                 />
+                
                 <label htmlFor='water_source-input'>Source Type</label>
                 <select
                     name='water_source'
@@ -114,7 +163,7 @@ const ReportForm = (props) => {
                 />
 
                 <label htmlFor='observation-input'>Observation</label>
-                <input
+                <textarea
                     required
                     type='text'
                     name='observation'
@@ -149,14 +198,26 @@ const ReportForm = (props) => {
                     <option value='Dismissed/Invalid'>Dismissed/Invalid</option>
                 </select>
 
+                {/* add a new label and input for the image */}
                 <label htmlFor='image_url-input'>Image</label>
                 <input
-                    type='text'
+                    type='file'
                     name='image_url'
                     id='image_url-input'
-                    value={formData.image_url}
-                    onChange={handleChange}
+                    accept='image/*'
+                    onChange={(e) => setImageFile(e.target.files[0])}
                 />
+                {/* if the report is being updated, show a preview of the previously uploaded image */}
+                {reportId && formData.image_url && (
+                    <div>
+                        <p>Current image:</p>
+                        <img
+                            src={formData.image_url}
+                            alt='Current water source picture'
+                            style={{ maxWidth: '200px' }}
+                        />
+                    </div>
+                )}
 
                 <button type='submit'>SUBMIT</button>
             </form>
