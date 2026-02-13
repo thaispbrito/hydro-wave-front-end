@@ -13,7 +13,7 @@ import ReportList from './components/ReportList/ReportList';
 import ReportDetails from './components/ReportDetails/ReportDetails';
 import ReportForm from './components/ReportForm/ReportForm';
 import CommentForm from './components/CommentForm/CommentForm';
-
+import CommunityPage from './components/CommunityPage/CommunityPage';
 
 
 const App = () => {
@@ -59,6 +59,7 @@ const App = () => {
           <>
             {/* Protected routes (available only to signed-in users) */}
             <Route path='/reports' element={<ReportList reports={reports} />} />
+            <Route path="/community" element={<CommunityPage reports={reports}/>} />
             <Route path='/reports/:reportId' element={<ReportDetails handleDeleteReport={handleDeleteReport} />} />
             <Route path='/reports/new' element={<ReportForm handleAddReport={handleAddReport} />} />
             <Route path='/reports/:reportId/edit' element={<ReportForm handleUpdateReport={handleUpdateReport} />} />

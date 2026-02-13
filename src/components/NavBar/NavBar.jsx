@@ -26,8 +26,9 @@ const NavBar = () => {
             {user ? (
                 <ul>
                     <li><Link to='/'>Home</Link></li>
-                    <li><Link to='/reports'>Reports</Link></li>
+                    <li><Link to='/reports'>My Reports</Link></li>
                     <li><Link to='/dashboard'>Dashboard</Link></li>
+                    <li><Link to='/community'>Community Reports</Link></li>
                     <li><Link to='/' onClick={handleSignOut}>Sign Out</Link></li>
                 </ul>
             ) : (

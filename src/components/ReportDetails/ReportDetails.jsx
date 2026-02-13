@@ -109,15 +109,22 @@ const ReportDetails = (props) => {
                         </header>
                         <p>{comment.text}</p>
 
-
-                        {/* This block needs to be adjusted: */}
-                        {comment.comment_author_username === user.username && (
+                        {/* Comment owners can edit and delete comments.*/}
+                        {/* The owner of the report can also delete any comments attached to their report. */}
+                        {user && (
                             <>
-                                <Link to={`/reports/${reportId}/comments/${comment.comment_id}/edit`}>Edit</Link>
-                                
-                                <button onClick={() => handleDeleteComment(comment.comment_id)}>
-                                    Delete
-                                </button>
+                                {comment.comment_author_username === user.username && (
+                                    <Link to={`/reports/${reportId}/comments/${comment.comment_id}/edit`}>
+                                        Edit
+                                    </Link>
+                                )}
+
+                                {(comment.comment_author_username === user.username ||
+                                    report.report_author_id === user.id) && (
+                                    <button onClick={() => handleDeleteComment(comment.comment_id)}>
+                                        Delete
+                                    </button>
+                                )}
                             </>
                         )}
 
