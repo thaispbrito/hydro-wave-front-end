@@ -12,6 +12,8 @@ import * as reportService from './services/reportService';
 import ReportList from './components/ReportList/ReportList';
 import ReportDetails from './components/ReportDetails/ReportDetails';
 import ReportForm from './components/ReportForm/ReportForm';
+import CommentForm from './components/CommentForm/CommentForm';
+
 
 
 const App = () => {
@@ -60,6 +62,7 @@ const App = () => {
             <Route path='/reports/:reportId' element={<ReportDetails handleDeleteReport={handleDeleteReport} />} />
             <Route path='/reports/new' element={<ReportForm handleAddReport={handleAddReport} />} />
             <Route path='/reports/:reportId/edit' element={<ReportForm handleUpdateReport={handleUpdateReport} />} />
+            <Route path='/reports/:reportId/comments/:commentId/edit' element={<CommentForm />} />
             <Route path="/dashboard" element={<Dashboard />} />
           </>
         ) : (

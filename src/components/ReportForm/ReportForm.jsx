@@ -77,6 +77,7 @@ const ReportForm = ( { handleAddReport, handleUpdateReport } ) => {
         data.append('water_feature', formData.water_feature)
         data.append('location_lat', formData.location_lat)
         data.append('location_long', formData.location_long)
+        data.append('location_name', formData.location_name)
         data.append('observation', formData.observation)
         data.append('condition', formData.condition)
         data.append('status', formData.status)
@@ -162,7 +163,7 @@ const ReportForm = ( { handleAddReport, handleUpdateReport } ) => {
 
                 {formData.location_lat && formData.location_long && (
                     <p>
-                        Selected: {formData.location_lat.toFixed(5)}, {formData.location_long.toFixed(5)}
+                        📍 {formData.location_lat.toFixed(5)}, {formData.location_long.toFixed(5)}
                     </p>
                 )}
 
