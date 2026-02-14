@@ -1,6 +1,7 @@
 import { Marker, useMapEvents } from 'react-leaflet';
 import { useState } from 'react';
 import BaseMap from '../BaseMap/BaseMap';
+import { reverseGeocode } from '../../services/geocodingService';
 
 const LocationMarker = ({ formData, setFormData }) => {
     const [position, setPosition] = useState(
@@ -15,29 +16,32 @@ const LocationMarker = ({ formData, setFormData }) => {
             setPosition([lat, lng]);
 
             try {
-                const response = await fetch(
-                `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`
-                );
-                const data = await response.json();
+                const data = await reverseGeocode(lat, lng);
 
                 const city =
-                data.address.city ||
-                data.address.town ||
-                data.address.village ||
-                data.address.hamlet ||
-                '';
-                const state = data.address.state || '';
-                const country = data.address.country || '';
+                    data.address?.city ||
+                    data.address?.town ||
+                    data.address?.village ||
+                    data.address?.hamlet ||
+                    '';
+                const state = data.address?.state || '';
+                const country = data.address?.country || '';
                 const locationName = [city, state, country].filter(Boolean).join(', ');
 
                 setFormData(prev => ({
-                ...prev,
-                location_lat: lat,
-                location_long: lng,
-                location_name: locationName,
+                    ...prev,
+                    location_lat: lat,
+                    location_long: lng,
+                    location_name: locationName,
                 }));
             } catch (error) {
                 console.error('Reverse geocoding failed', error);
+                setFormData(prev => ({
+                    ...prev,
+                    location_lat: lat,
+                    location_long: lng,
+                    location_name: '',
+                }));
             }
         },
     });
@@ -46,15 +50,15 @@ const LocationMarker = ({ formData, setFormData }) => {
 };
 
 const LocationPicker = ({ formData, setFormData }) => {
-  const defaultCenter = formData.location_lat && formData.location_long
-    ? [formData.location_lat, formData.location_long]
-    : [47.66277, -122.42265];
+    const defaultCenter = formData.location_lat && formData.location_long
+        ? [formData.location_lat, formData.location_long]
+        : [47.66277, -122.42265];
 
-  return (
-    <BaseMap center={defaultCenter} zoom={13} height="400px">
-      <LocationMarker formData={formData} setFormData={setFormData} />
-    </BaseMap>
-  );
+    return (
+        <BaseMap center={defaultCenter} zoom={13} height="400px">
+            <LocationMarker formData={formData} setFormData={setFormData} />
+        </BaseMap>
+    );
 };
 
 export default LocationPicker;
