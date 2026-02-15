@@ -83,42 +83,53 @@ const Dashboard = () => {
             </section>
 
             {/* Chart */}
-            <section style={{ marginTop: '2rem', width: '100%', height: 300 }}>
-            <h2>Reports by Condition</h2>
-            <ResponsiveContainer>
-                <BarChart data={chartData}>
-                <XAxis dataKey="condition" />
-                <YAxis allowDecimals={false} />
-                <Tooltip />
-                <Bar dataKey="count" fill="#8884d8" />
-                </BarChart>
-            </ResponsiveContainer>
+            <section style={{ marginTop: '2rem' }}>
+                <h2>Reports by Condition</h2>
+                {chartData && chartData.length > 0 && (
+                    <div style={{ width: '100%', minWidth: 300, height: 300 }}>
+                        <ResponsiveContainer width="100%" height={300}>
+                            <BarChart data={chartData}>
+                                <XAxis dataKey="condition" />
+                                <YAxis allowDecimals={false} />
+                                <Tooltip />
+                                <Bar dataKey="count" fill="#8884d8" />
+                            </BarChart>
+                        </ResponsiveContainer>
+                    </div>
+                )}
+                {(!chartData || chartData.length === 0) && (
+                    <p>No data available to display chart.</p>
+                )}
             </section>
 
             {/* Table */}
             <section>
-            < br />
-            <h2>Reports ({filteredReports.length})</h2>
-            <table border="1" cellPadding="5">
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Date</th>
-                        <th>Water Source</th>
-                        <th>Condition</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {filteredReports.map(r => (
-                    <tr key={r.id}>
-                        <td>{r.title}</td>
-                        <td>{new Date(r.reported_at).toLocaleDateString()}</td>
-                        <td>{r.water_source}</td>
-                        <td>{r.condition}</td>
-                    </tr>
-                ))}
-                </tbody>
-            </table>
+                <br />
+                <h2>Reports ({filteredReports.length})</h2>
+                {filteredReports.length > 0 ? (
+                    <table border="1" cellPadding="5">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Date</th>
+                                <th>Water Source</th>
+                                <th>Condition</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {filteredReports.map(r => (
+                                <tr key={r.id}>
+                                    <td>{r.title}</td>
+                                    <td>{new Date(r.reported_at).toLocaleDateString()}</td>
+                                    <td>{r.water_source}</td>
+                                    <td>{r.condition}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                ) : (
+                    <p>No reports available to display.</p>
+                )}
             </section>
 
             {/* My reports section to get AI suggestions */}
