@@ -1,8 +1,8 @@
 const LandingPage = () => {
     return (
         <main>
-            <h1>Hydrowave</h1>
-            <p>Sign up now, or sign to create water reports and help the environment around you!</p>
+            <h1>HydroWave</h1>
+            <p>Empowering communities to report water observations, engage through interactive comments, and take action with real-time environmental insights.</p>
         </main>
     );
 };
