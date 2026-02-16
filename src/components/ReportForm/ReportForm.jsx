@@ -129,6 +129,7 @@ const ReportForm = ( { handleAddReport, handleUpdateReport } ) => {
                     <option value='Groundwater'>Groundwater</option>
                     <option value='Rainwater'>Rainwater</option>
                     <option value='Stormwater'>Stormwater</option>
+                    <option value='Marine Water'>Marine Water</option>
                 </select>
                 <label htmlFor='water_feature-input'>Feature Type</label>
                 <select
@@ -145,6 +146,12 @@ const ReportForm = ( { handleAddReport, handleUpdateReport } ) => {
                     <option value='Spring'>Spring</option>
                     <option value='Wetland'>Wetland</option>
                     <option value='Well'>Well</option>
+                    <option value='Ocean'>Ocean</option>
+                    <option value='Coastal Area'>Coastal Area</option>
+                    <option value='Bay'>Bay</option>
+                    <option value='Harbor'>Harbor</option>
+                    <option value='Lagoon'>Lagoon</option>
+                    <option value='Estuary'>Estuary</option>
                     <option value='Other'>Other</option>
                 </select>
 
