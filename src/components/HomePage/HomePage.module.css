@@ -1,0 +1,40 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: calc(100vh - 80px);
+    text-align: center;
+    padding: 4rem 2rem;
+}
+
+.contentCard {
+    background: var(--background-white);
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 119, 182, 0.15);
+    width: 100%;
+    max-width: 500px;
+}
+
+.welcomeTitle {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: var(--text-gray);
+    margin-bottom: 2rem;
+}
+
+.contentCard h3 {
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+}
+
+.contentCard p {
+    margin-bottom: 1.5rem;
+}

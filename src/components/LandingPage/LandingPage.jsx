@@ -1,17 +1,22 @@
-import { Link } from 'react-router';
 import SignInForm from '../SignInForm/SignInForm';
+import logo from '../../assets/blue_logo.png';
+import styles from './LandingPage.module.css';
 
 const LandingPage = () => {
     return (
-        <main>
-            <h1>HydroWave</h1>
-            <p>Empowering communities to report water observations and take action with real-time environmental insights.</p>
+        <main className={styles.container}>
+            <div className="brandWrapper">
+                <img src={logo} alt="HydroWave logo" className="brandLogo"/>
+                <h1 className="brandTitle">HydroWave</h1>
+            </div>
+            <p className={styles.subtitle}>
+                Empowering communities to report water observations and take action with real-time environmental insights.
+            </p>
 
-        <SignInForm />
-            <p>Don't have an account yet? <Link to='/sign-up'>Sign up here</Link></p>
+            <div className={styles.formCard}>
+                <SignInForm />
+            </div>
         </main>
-
-
     );
 };
 

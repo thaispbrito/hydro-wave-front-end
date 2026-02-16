@@ -1,9 +1,9 @@
 import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router';
-
 import { signIn } from '../../services/authService';
-
 import { UserContext } from '../../contexts/UserContext';
+import { Link } from 'react-router';
+import styles from './SignInForm.module.css';
 
 const SignInForm = () => {
     const navigate = useNavigate();
@@ -31,9 +31,9 @@ const SignInForm = () => {
     };
 
     return (
-        <main>
-            <h1>Sign In</h1>
-            <p>{message}</p>
+        <>
+            <h1 className={styles.title}>Sign In</h1>
+            {message && <p className={styles.errorMessage}>{message}</p>}
             <form autoComplete='off' onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor='username'>Username:</label>
@@ -60,11 +60,13 @@ const SignInForm = () => {
                     />
                 </div>
                 <div>
-                    <button>Sign In</button>
-                    <button onClick={() => navigate('/')}>Cancel</button>
+                    <button type='submit'>Sign In</button>
                 </div>
             </form>
-        </main>
+            <p className={styles.signupLink}>
+                Don't have an account yet? <Link to='/sign-up'>Sign up here</Link>
+            </p>
+        </>
     );
 };
 

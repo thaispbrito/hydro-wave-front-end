@@ -1,0 +1,20 @@
+.logoLink {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logo {
+    height: 20px;
+}
+
+.navLinks {
+    margin-left: auto;
+}
+
+.navLinks ul {
+    display: flex;
+    list-style: none;
+    gap: 1rem;
+    align-items: center;
+}

@@ -1,0 +1,28 @@
+.title {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: var(--text-dark);
+}
+
+.errorMessage {
+    color: var(--error-red);
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.signupLink {
+    margin-top: 1.5rem;
+    text-align: center;
+    color: var(--text-gray);
+    font-size: 0.95rem;
+}
+
+.signupLink a {
+    color: var(--primary-blue);
+    font-weight: 600;
+}
+
+.signupLink a:hover {
+    text-decoration: underline;
+}
