@@ -6,9 +6,7 @@ import logo from '../../assets/waves_logo.png';
 const NavBar = () => {
     const { user, setUser } = useContext(UserContext);
 
-    // Add the handleSignOut function
     const handleSignOut = () => {
-        // Clear the token from localStorage
         localStorage.removeItem('token');
         // Clear the user state
         setUser(null);
