@@ -38,9 +38,15 @@ const ReportDetails = (props) => {
             <section>
                 <header>
                     <h1>{report.title}</h1>
-                    <p>
+                    {/* <p>
                         {`${report.author_username} posted on
                         ${new Date(report.created_at).toLocaleDateString()}`}
+                    </p> */}
+
+                    <p>
+                        {new Date(report.updated_at).getTime() === new Date(report.created_at).getTime()
+                            ? `Posted on ${new Date(report.created_at).toLocaleDateString()} by ${report.author_username}`
+                            : `Updated on ${new Date(report.updated_at).toLocaleDateString()} by ${report.author_username}`}
                     </p>
                     {report.report_author_id === user.id && (
                         <>
@@ -88,7 +94,8 @@ const ReportDetails = (props) => {
                 <p>Observation: {report.observation}</p>
                 <p>Condition: {report.condition}</p>
                 <p>Status: {report.status}</p>
-                <img src={report.image_url} width={300} alt={report.title} />
+                {/* <img src={report.image_url} width={300} alt={report.title} /> */}
+                {report.image_url && (<img src={report.image_url} width={300} alt={report.title} />)}
 
             </section>
             <section>

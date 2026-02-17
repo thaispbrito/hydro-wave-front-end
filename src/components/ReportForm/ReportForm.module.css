@@ -1,0 +1,274 @@
+.container {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.formCard {
+    background: var(--background-white);
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 119, 182, 0.15);
+    width: 100%;
+    max-width: 700px;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+/* Location Field */
+.locationSection {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.locationButton {
+    width: 100%;
+    background: var(--background-white);
+    color: var(--text-gray);
+    border: 2px solid var(--primary-light);
+    text-align: left;
+    font-weight: 400;
+    padding: 12px 16px;
+}
+
+.locationButton:hover {
+    border-color: var(--primary-blue);
+    transform: none;
+    box-shadow: none;
+    background: var(--background-white);
+}
+
+.locationSelected {
+    width: 100%;
+    background: var(--background-white);
+    border: 2px solid var(--primary-light);
+    border-radius: 8px;
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.locationSelected:hover {
+    border-color: var(--primary-blue);
+}
+
+.locationCoords {
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+.locationName {
+    font-size: 0.85rem;
+    color: var(--text-gray);
+    margin: 0;
+}
+
+.locationActions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+/* Shared Link Styles */
+.clearLink {
+    background: none;
+    border: none;
+    color: var(--error-red);
+    font-size: 0.8rem;
+    padding: 0;
+    cursor: pointer;
+    text-decoration: underline;
+    font-family: inherit;
+}
+
+.clearLink:hover {
+    background: none;
+    transform: none;
+    box-shadow: none;
+    color: var(--error-red);
+    opacity: 0.8;
+}
+
+.changeLink {
+    background: none;
+    border: none;
+    color: var(--primary-blue);
+    font-size: 0.8rem;
+    padding: 0;
+    cursor: pointer;
+    text-decoration: underline;
+    font-family: inherit;
+}
+
+.changeLink:hover {
+    background: none;
+    transform: none;
+    box-shadow: none;
+    color: var(--primary-dark);
+}
+
+/* File/Image Field */
+.fileSection {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.fileInput {
+    display: none;
+}
+
+.fileButton {
+    width: 100%;
+    background: var(--background-white);
+    color: var(--text-gray);
+    border: 2px solid var(--primary-light);
+    text-align: left;
+    font-weight: 400;
+    padding: 12px 16px;
+    cursor: pointer;
+}
+
+.fileButton:hover {
+    border-color: var(--primary-blue);
+    transform: none;
+    box-shadow: none;
+    background: var(--background-white);
+}
+
+.fileSelected {
+    width: 100%;
+    background: var(--background-white);
+    border: 2px solid var(--primary-light);
+    border-radius: 8px;
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.fileSelected:hover {
+    border-color: var(--primary-blue);
+}
+
+.fileName {
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+.fileActions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.currentImage {
+    margin-top: 1rem;
+}
+
+.currentImage img {
+    max-width: 200px;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+}
+
+.submitButton {
+    width: fit-content;
+    margin: 1.5rem auto 0;
+    display: block;
+    padding: 12px 40px;
+}
+
+/* Map Picker Mode */
+.mapPickerMode {
+    background: var(--background-white);
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 119, 182, 0.15);
+    width: 100%;
+    max-width: 900px;
+}
+
+.mapPickerHeader {
+    margin-bottom: 1rem;
+}
+
+.mapPickerHeader h2 {
+    margin: 0 0 0.25rem;
+}
+
+.mapPickerHeader p {
+    margin: 0;
+    color: var(--text-gray);
+}
+
+.mapContainer {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid var(--primary-light);
+}
+
+.mapPickerInfo {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1rem;
+    padding: 1rem;
+    background: var(--background-light);
+    border-radius: 8px;
+}
+
+.mapPickerInfo p {
+    margin: 0;
+}
+
+.mapPickerActions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.mapPickerActions button {
+    width: fit-content;
+}
+
+.cancelButton {
+    background: transparent;
+    color: var(--primary-blue);
+    border: 2px solid var(--primary-blue);
+}
+
+.cancelButton:hover {
+    background: var(--background-light);
+    transform: none;
+    box-shadow: none;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .row {
+        grid-template-columns: 1fr;
+    }
+
+    .mapPickerInfo {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .formCard {
+        padding: 1.5rem;
+    }
+}

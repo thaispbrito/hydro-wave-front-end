@@ -94,6 +94,12 @@ textarea {
     background-color: white;
 }
 
+/* Gray placeholder for empty selects and date inputs */
+select:invalid,
+input[type="datetime-local"]:invalid {
+    color: var(--text-gray);
+}
+
 input:focus,
 select:focus,
 textarea:focus {
@@ -225,7 +231,7 @@ form {
     gap: 1rem;
 }
 
-form div {
+form > div {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -254,6 +260,7 @@ p {
     margin-bottom: 0.5rem;
 }
 
+/* Responsive Design */
 @media (max-width: 768px) {
     nav ul {
         flex-wrap: wrap;

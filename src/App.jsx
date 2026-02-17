@@ -44,11 +44,19 @@ const App = () => {
     navigate('/reports');
   };
 
+  // const handleUpdateReport = async (reportId, reportFormData) => {
+  //   const updatedReport = await reportService.updateReport(reportId, reportFormData);
+  //   setReports(reports.map((report) => (report.id === updatedReport.id ? updatedReport : report)));
+  //   navigate(`/reports/${reportId}`);
+  // };
+
   const handleUpdateReport = async (reportId, reportFormData) => {
-    const updatedReport = await reportService.updateReport(reportId, reportFormData);
-    setReports(reports.map((report) => (reportId === updatedReport.id ? updatedReport : report)));
+    await reportService.updateReport(reportId, reportFormData);
+    // Refetch all reports to ensure state is up to date
+    const reportsData = await reportService.index();
+    setReports(reportsData);
     navigate(`/reports/${reportId}`);
-  };
+};
 
   return (
     <>
