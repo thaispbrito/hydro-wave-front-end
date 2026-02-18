@@ -20,7 +20,7 @@ const ReportList = ( {reports} ) => {
     const [statusFilter, setStatusFilter] = useState("All");
 
     const filteredReports = statusFilter === "All" ? sortedReports
-      : sortedReports.filter((report) => report.status === statusFilter);
+        : sortedReports.filter((report) => report.status === statusFilter);
 
     return (
         <main className={styles.container}>

@@ -55,7 +55,7 @@ const CommunityPage = (props) => {
                 </div>
 
             ) : (
-                <p className={styles.emptyMessage}>There are no reports yet.</p>
+                <p className={styles.emptyMessage}>No reports found.</p>
             )}
 
         </main>

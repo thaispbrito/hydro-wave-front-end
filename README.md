@@ -68,7 +68,7 @@ Whether tracking a single water source or participating in broader community obs
 * [Leaflet Documentation](https://leafletjs.com/reference.html)
 * [Nominatim (OpenStreetMap)](https://nominatim.openstreetmap.org/)
 * [Cloudinary](https://cloudinary.com/)
-* [Gemini API](https://aistudio.google.com)
+* [Gemini API](https://ai.google.dev/gemini-api/docs)
 * [W3Schools](https://www.w3schools.com/) 
 * [Freepik](https://www.freepik.com/icon/waves_10311026) (Wave icon by Muhammad Atif)
 

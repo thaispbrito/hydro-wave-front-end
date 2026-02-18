@@ -52,7 +52,7 @@ const LocationMarker = ({ formData, setFormData }) => {
 const LocationPicker = ({ formData, setFormData }) => {
     const defaultCenter = formData.location_lat && formData.location_long
         ? [formData.location_lat, formData.location_long]
-        : [47.66277, -122.42265];
+        : [47.66277, -122.42265]; // Discovery Park, Seattle
 
     return (
         <BaseMap center={defaultCenter} zoom={13} height="400px">

@@ -68,7 +68,7 @@ const ReportForm = ( { handleAddReport, handleUpdateReport } ) => {
         // FormData allows us to send text and files to our backend
         const data = new FormData()
 
-        // append (add) the form values to FormData
+        // Append (add) the form values to FormData
         data.append('title', formData.title)
         data.append('reported_at', formData.reported_at)
         data.append('water_source', formData.water_source)

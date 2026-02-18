@@ -11,6 +11,7 @@ const getUserFromToken = () => {
 };
 
 function UserProvider({ children }) {
+
     // Call getUserFromToken() to get our initial user state
     const [user, setUser] = useState(getUserFromToken());
 
@@ -20,6 +21,7 @@ function UserProvider({ children }) {
 
     return (
         <UserContext.Provider value={value}>
+            
             {/* The data we pass to the value prop above is now available to */}
             {/* all the children of the UserProvider component. */}
             {children}
