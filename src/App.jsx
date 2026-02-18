@@ -18,72 +18,64 @@ import CommunityPage from './components/CommunityPage/CommunityPage';
 
 const App = () => {
 
-  const { user } = useContext(UserContext);
-  const [reports, setReports] = useState([]);
-  const navigate = useNavigate();
+    const { user } = useContext(UserContext);
+    const [reports, setReports] = useState([]);
+    const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchAllReports = async () => {
-      const reportsData = await reportService.index();
+    useEffect(() => {
+        const fetchAllReports = async () => {
+        const reportsData = await reportService.index();
+        setReports(reportsData);
+        };
+        if (user) fetchAllReports();
+    }, [user]);
 
-      setReports(reportsData);
+    const handleAddReport = async (reportFormData) => {
+        const newReport = await reportService.create(reportFormData);
+        setReports([newReport, ...reports]);
+        navigate('/reports');
     };
-    if (user) fetchAllReports();
-  }, [user]);
 
-  const handleAddReport = async (reportFormData) => {
-    const newReport = await reportService.create(reportFormData);
-    setReports([newReport, ...reports]);
-    navigate('/reports');
-  };
+    const handleDeleteReport = async (reportId) => {
+        const deletedReport = await reportService.deleteReport(reportId);
+        setReports(reports.filter((report) => report.id !== deletedReport.id));
+        navigate('/reports');
+    };
 
-  const handleDeleteReport = async (reportId) => {
-    const deletedReport = await reportService.deleteReport(reportId);
-    // Filter state using deletedHoot.id:
-    setReports(reports.filter((report) => report.id !== deletedReport.id));
-    navigate('/reports');
-  };
+    const handleUpdateReport = async (reportId, reportFormData) => {
+        await reportService.updateReport(reportId, reportFormData);
+        // Refetch all reports to ensure state is up to date
+        const reportsData = await reportService.index();
+        setReports(reportsData);
+        navigate(`/reports/${reportId}`);
+    };
 
-  // const handleUpdateReport = async (reportId, reportFormData) => {
-  //   const updatedReport = await reportService.updateReport(reportId, reportFormData);
-  //   setReports(reports.map((report) => (report.id === updatedReport.id ? updatedReport : report)));
-  //   navigate(`/reports/${reportId}`);
-  // };
-
-  const handleUpdateReport = async (reportId, reportFormData) => {
-    await reportService.updateReport(reportId, reportFormData);
-    // Refetch all reports to ensure state is up to date
-    const reportsData = await reportService.index();
-    setReports(reportsData);
-    navigate(`/reports/${reportId}`);
-};
-
-  return (
-    <>
-      <NavBar />
-      <Routes>
-        <Route path='/' element={user ? <HomePage /> : <LandingPage />} />
-        {user ? (
-          <>
-            {/* Protected routes (available only to signed-in users) */}
-            <Route path='/reports' element={<ReportList reports={reports} />} />
-            <Route path="/community" element={<CommunityPage reports={reports}/>} />
-            <Route path='/reports/:reportId' element={<ReportDetails handleDeleteReport={handleDeleteReport} />} />
-            <Route path='/reports/new' element={<ReportForm handleAddReport={handleAddReport} />} />
-            <Route path='/reports/:reportId/edit' element={<ReportForm handleUpdateReport={handleUpdateReport} />} />
-            <Route path='/reports/:reportId/comments/:commentId/edit' element={<CommentForm />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-          </>
-        ) : (
-          <>
-            {/* Non-user routes (available only to guests) */}
-            <Route path='/sign-up' element={<SignUpForm />} />
-            <Route path='/sign-in' element={<SignInForm />} />
-          </>
-        )}
-      </Routes>
-    </>
-  );
+    return (
+        <>
+        <NavBar />
+        <Routes>
+            <Route path='/' element={user ? <HomePage /> : <LandingPage />} />
+            {user ? (
+            <>
+                {/* Protected routes (available only to signed-in users) */}
+                <Route path='/reports' element={<ReportList reports={reports} />} />
+                <Route path="/community" element={<CommunityPage reports={reports}/>} />
+                <Route path='/reports/:reportId' element={<ReportDetails handleDeleteReport={handleDeleteReport} />} />
+                <Route path='/reports/new' element={<ReportForm handleAddReport={handleAddReport} />} />
+                <Route path='/reports/:reportId/edit' element={<ReportForm handleUpdateReport={handleUpdateReport} />} />
+                <Route path='/reports/:reportId/comments/:commentId/edit' element={<CommentForm />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+            </>
+            ) : (
+            <>
+                {/* Non-user routes (available only to guests) */}
+                <Route path='/sign-up' element={<SignUpForm />} />
+                <Route path='/sign-in' element={<SignInForm />} />
+            </>
+            )}
+        </Routes>
+        </>
+    );
 }
 
 export default App;

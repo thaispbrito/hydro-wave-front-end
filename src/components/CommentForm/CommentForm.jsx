@@ -20,27 +20,13 @@ const CommentForm = (props) => {
             if (foundComment) {
                 setFormData({ text: foundComment.comment_text });
             }
-            // // Find comment in fetched report data
-            // setFormData(reportData.comments.find((comment) => String(comment.comment_id) === commentId));
         };
         if (reportId && commentId) fetchReport();
     }, [reportId, commentId]);
 
-
     const handleChange = (evt) => {
         setFormData({ ...formData, [evt.target.name]: evt.target.value });
     };
-
-    // const handleSubmit = (evt) => {
-    //     evt.preventDefault();
-    //     if (reportId && commentId) {
-    //         reportService.updateComment(reportId, commentId, formData);
-    //         navigate(`/reports/${reportId}`);
-    //     } else {
-    //         props.handleAddComment(formData);
-    //     }
-    //     setFormData({ text: '' });
-    // };
 
     const handleSubmit = async (evt) => {
         evt.preventDefault();
@@ -61,11 +47,10 @@ const CommentForm = (props) => {
             props.handleAddComment(formData);
         }
 
-        // Clear form (optional if navigating away)
+        // Clear form 
         setFormData({ text: '' });
     };
 
-    // NEW
     const handleCancel = (evt) => {
         evt.preventDefault();
         if (reportId) {

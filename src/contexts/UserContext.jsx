@@ -11,7 +11,7 @@ const getUserFromToken = () => {
 };
 
 function UserProvider({ children }) {
-     // call getUserFromToken() to get our initial user state
+    // Call getUserFromToken() to get our initial user state
     const [user, setUser] = useState(getUserFromToken());
 
     // This is the user state and the setUser function that will update it!

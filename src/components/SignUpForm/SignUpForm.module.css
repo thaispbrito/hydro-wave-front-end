@@ -29,13 +29,6 @@
     margin-bottom: 1rem;
 }
 
-/* .buttonGroup {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
-    justify-content: center;
-} */
-
 .cancelButton {
     background: transparent;
     color: var(--primary-blue);

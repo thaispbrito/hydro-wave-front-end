@@ -1,8 +1,8 @@
-# HydroWave :ocean:
+# :ocean: HydroWave 
 
 ## :spiral_notepad: Website Description
 
-**HydroWaves** is a full-stack web application that empowers users to report water observations in their community or wherever they travel. The platform allows users to create water observation reports by adding description, condtition, status, uploading photos, and pinpointing exact locations on an interactive map. Users can explore the community page to view reports from others, interact through comments, and engage in collaborative environmental reporting. The insights page provides visual analytics, including a bar chart and a table filtered by water source and condition, respectively, along with AI-powered recommendations, enabling users to take informed actions that support environmental awareness and preservation.
+**HydroWaves** is a full-stack web application that empowers users to report water observations in their community or wherever they travel. The platform allows users to create water observation reports by adding description, condtition, status, uploading photos, and pinpointing exact locations on an interactive map. Users can explore the community page to view reports from others, interact through comments, and engage in collaborative environmental reporting. The `Insights` page provides visual analytics, including a bar chart and a table filtered by water source and condition, respectively, along with AI-powered recommendations, enabling users to take informed actions that support environmental awareness and preservation.
 
 Whether tracking a single water source or participating in broader community observations, the platform encourages proactive stewardship of local ecosystems through an intuitive, interactive interface.
 
@@ -21,9 +21,9 @@ Whether tracking a single water source or participating in broader community obs
 
 4. **Add a Comment**: Engage with the community by commenting on other users’ water reports to share insights and feedback.
 
-5. **Update and Delete a Water Report or Comment**: Edit or remove your reports and comments at any time to keep your data accurate and up to date.
+5. **Update and Delete a Water Report or Comment**: Edit or remove your reports and comments at any time to keep information accurate and up to date.
 
-6. **Filter Water Reports by State**: Use filters on the `Community` and `My Reports` pages to view reports by status (e.g., normal, abnormal, critical).
+6. **Filter Water Reports by State**: Use filters on the `Community Reports` and `My Reports` pages to view reports by status (e.g., normal, abnormal, critical).
 
 7. **Viw Water Report Chart + Table**: On the Insights page, explore a bar chart and a table showing reports filtered by water source and condition.
 
@@ -62,7 +62,6 @@ Whether tracking a single water source or participating in broader community obs
 ![Github](https://img.shields.io/badge/-GitHub-05122A?style=flat&logo=github)
 ![VSCode](https://img.shields.io/badge/-VS_Code-05122A?style=flat&logo=visualstudio)
 
-
 ## :globe_with_meridians: External Resources and Attributions
 
 * [Recharts Documentation](https://recharts.github.io/)
@@ -70,6 +69,7 @@ Whether tracking a single water source or participating in broader community obs
 * [Nominatim (OpenStreetMap)](https://nominatim.openstreetmap.org/)
 * [Cloudinary](https://cloudinary.com/)
 * [Gemini API](https://aistudio.google.com)
+* [W3Schools](https://www.w3schools.com/) 
 * [Freepik](https://www.freepik.com/icon/waves_10311026) (Wave icon by Muhammad Atif)
 
 ## :arrow_right: Next Steps 

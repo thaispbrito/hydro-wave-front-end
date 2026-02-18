@@ -34,7 +34,7 @@ const ReportDetails = (props) => {
 
     if (!report) return <main>Loading...</main>;
 
- // Map view mode
+    // Map view mode
     if (showMap) {
         return (
             <main className={styles.container}>
@@ -55,7 +55,6 @@ const ReportDetails = (props) => {
                             zoomControl={true}
                         />
                     </div>
-
                     {/* Location info under the map*/}
                     {(report.location_lat || report.location_name) && (
                         <div className={styles.mapPickerInfo}>
@@ -75,7 +74,6 @@ const ReportDetails = (props) => {
                             )}
                         </div>
                     )}
-
                     <div style={{ marginTop: '1rem', textAlign: 'center' }}>
                         <a
                             href={`https://www.openstreetmap.org/?mlat=${report.location_lat}&mlon=${report.location_long}#map=15/${report.location_lat}/${report.location_long}`}
@@ -98,7 +96,7 @@ const ReportDetails = (props) => {
             </main>
         );
     }
-
+    
     // Normal details view
     return (
         <main className={styles.container}>
@@ -119,8 +117,8 @@ const ReportDetails = (props) => {
                         <strong>Location:</strong> 🏙 {report.location_name} (📍 {report.location_lat}, {report.location_long}){' '}
                         <a
                             href="#"
-                            onClick={e => {
-                                e.preventDefault();
+                            onClick={evt => {
+                                evt.preventDefault();
                                 setShowMap(true);
                             }}
                             style={{ color: 'var(--primary-blue)', textDecoration: 'underline', marginLeft: 8 }}
@@ -139,7 +137,7 @@ const ReportDetails = (props) => {
                         <img src={report.image_url} alt={report.title} />
                     </div>
                 )}
-
+                
                 {report.report_author_id === user.id && (
                     <div className={styles.buttonGroup}>
                         <Link to={`/reports/${reportId}/edit`}>

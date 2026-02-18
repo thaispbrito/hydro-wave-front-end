@@ -65,7 +65,6 @@ const ReportForm = ( { handleAddReport, handleUpdateReport } ) => {
     const handleSubmit = (evt) => {
         evt.preventDefault();
 
-
         // FormData allows us to send text and files to our backend
         const data = new FormData()
 
@@ -91,10 +90,10 @@ const ReportForm = ( { handleAddReport, handleUpdateReport } ) => {
         }
 
         if (reportId) {
-            // send the updated data to the backend
+            // Send the updated data to the backend
             handleUpdateReport(reportId, data);
         } else {
-            // send the new data to the backend
+            // Send the new data to the backend
             handleAddReport(data);
         }
     };
@@ -364,8 +363,8 @@ const ReportForm = ( { handleAddReport, handleUpdateReport } ) => {
                                         id='image_url-input'
                                         accept='image/*'
                                         className={styles.fileInput}
-                                        onChange={(e) => {
-                                            setImageFile(e.target.files[0]);
+                                        onChange={(evt) => {
+                                            setImageFile(evt.target.files[0]);
                                             setFormData(prev => ({
                                                 ...prev,
                                                 remove_image: false,
@@ -401,7 +400,7 @@ const ReportForm = ( { handleAddReport, handleUpdateReport } ) => {
                                     id='image_url-input'
                                     accept='image/*'
                                     className={styles.fileInput}
-                                    onChange={(e) => setImageFile(e.target.files[0])}
+                                    onChange={(evt) => setImageFile(evt.target.files[0])}
                                 />
 
                                 {/* Show preview if imageFile is picked in new form */}

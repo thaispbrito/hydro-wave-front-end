@@ -9,7 +9,6 @@ const NavBar = () => {
 
     const handleSignOut = () => {
         localStorage.removeItem('token');
-        // Clear the user state
         setUser(null);
     };
 
@@ -31,13 +30,13 @@ const NavBar = () => {
                                 </Link>
                             </li>
                             <li>
-                                <Link to='/dashboard'>
-                                    Insights
+                                <Link to='/community'>
+                                    Community Reports
                                 </Link>
                             </li>
                             <li>
-                                <Link to='/community'>
-                                    Community Reports
+                                <Link to='/dashboard'>
+                                    Insights
                                 </Link>
                             </li>
                             <li>

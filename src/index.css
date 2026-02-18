@@ -231,18 +231,6 @@ form {
     gap: 1rem;
 }
 
-/* form > div {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-} */
-
-form > FormField {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
 article {
     background: white;
     padding: 1.5rem;

@@ -1,6 +1,6 @@
 const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/geocode`;
 
-// Reverse geocode: convert lat/lng to address
+// Reverse geocode: convert lat/lng to location name
 const reverseGeocode = async (lat, lng) => {
     try {
         const res = await fetch(`${BASE_URL}/reverse?lat=${lat}&lng=${lng}`);
@@ -11,7 +11,7 @@ const reverseGeocode = async (lat, lng) => {
     }
 };
 
-// Forward geocode: convert address/place name to lat/lng
+// Forward geocode: convert location name to lat/lng
 const forwardGeocode = async (query) => {
     try {
         const res = await fetch(`${BASE_URL}/search?q=${encodeURIComponent(query)}`);

@@ -1,8 +1,6 @@
-// Use the `VITE_BACK_END_SERVER_URL` environment variable to set the base URL.
-// Note the `/auth` path added to the server URL that forms the base URL for
-// all the requests in this service.
 const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/auth`;
 
+// Sign Up
 const signUp = async (formData) => {
     try {
         const res = await fetch(`${BASE_URL}/sign-up`, {
@@ -29,6 +27,7 @@ const signUp = async (formData) => {
     }
 };
 
+// Sign In
 const signIn = async (formData) => {
     try {
         const res = await fetch(`${BASE_URL}/sign-in`, {

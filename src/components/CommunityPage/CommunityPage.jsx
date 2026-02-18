@@ -4,26 +4,30 @@ import styles from './CommunityPage.module.css';
 
 const CommunityPage = (props) => {
 
+    // Sort reports by most recent updated_at or created_at (whichever is later)
+    const sortedReports = [...props.reports].sort((a, b) => {
+        const aDate = new Date(a.updated_at || a.created_at);
+        const bDate = new Date(b.updated_at || b.created_at);
+        return bDate - aDate;
+    });
 
     const [statusFilter, setStatusFilter] = useState("All");
 
-    const filteredReports = statusFilter === "All" ? props.reports
-      : props.reports.filter((report) => report.status === statusFilter);
+    const filteredReports = statusFilter === "All" ? sortedReports
+        : sortedReports.filter((report) => report.status === statusFilter);
 
     return (
         <main className={styles.container}>
             <div className={styles.listHeader}>
                 <h1>Community Reports </h1>
-
                 <div>
                     <label htmlFor="status-filter">
                         Filter by status:
                     </label>
-
                     <select
                         id="status-filter"
                         value={statusFilter}
-                        onChange={(e) => setStatusFilter(e.target.value)}
+                        onChange={(evt) => setStatusFilter(evt.target.value)}
                     >
                         <option value="All">All</option>
                         <option value="Unresolved">Unresolved</option>
@@ -31,9 +35,7 @@ const CommunityPage = (props) => {
                         <option value="Dismissed/Invalid">Dismissed/Invalid</option>
                     </select>
                 </div>
-
-            </div>
-            
+            </div>           
             {filteredReports.length > 0 ? (
                 <div className={styles.grid}>
                     {filteredReports.map((report) => (

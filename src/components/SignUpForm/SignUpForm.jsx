@@ -39,7 +39,7 @@ const SignUpForm = () => {
         return !(username && password && password === passwordConf);
     };
 
-return (
+    return (
         <main className={styles.container}>
             <div className="brandWrapper">
                 <img src={logo} alt="HydroWave logo" className="brandLogo" />

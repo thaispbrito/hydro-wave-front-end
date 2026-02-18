@@ -25,7 +25,6 @@
     gap: 1rem;
 }
 
-/* Location Field */
 .locationSection {
     display: flex;
     flex-direction: column;
@@ -82,7 +81,6 @@
     margin-top: 0.5rem;
 }
 
-/* Shared Link Styles */
 .clearLink {
     background: none;
     border: none;
@@ -120,7 +118,6 @@
     color: var(--primary-dark);
 }
 
-/* File/Image Field */
 .fileSection {
     display: flex;
     flex-direction: column;
@@ -193,7 +190,6 @@
     padding: 12px 40px;
 }
 
-/* Map Picker Mode */
 .mapPickerMode {
     background: var(--background-white);
     padding: 2rem;
@@ -257,7 +253,6 @@
     box-shadow: none;
 }
 
-/* Responsive */
 @media (max-width: 600px) {
     .row {
         grid-template-columns: 1fr;

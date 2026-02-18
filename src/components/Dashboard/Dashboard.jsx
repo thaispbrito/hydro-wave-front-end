@@ -43,7 +43,7 @@ const Dashboard = () => {
     // Filter reports authored by the current user
     const myReports = reports.filter(report => report.report_author_id === user.id);
 
-    // Handler to get AI insight for a report
+    // Handler function to get AI insight for a report
     const handleGetInsight = async (reportId) => {
         try {
             const res = await reportService.getAIInsight(reportId);
@@ -54,7 +54,7 @@ const Dashboard = () => {
         }
     };
 
-return (
+    return (
         <main className={styles.container}>
             <h1>Water Report Insights</h1>
             <div className={styles.card}>
@@ -66,7 +66,7 @@ return (
                             <select 
                                 name="chartWaterSource" 
                                 value={chartWaterSource} 
-                                onChange={e => setChartWaterSource(e.target.value)}
+                                onChange={evt => setChartWaterSource(evt.target.value)}
                             >
                                 <option value="">All</option>
                                 <option value="Surface Water">Surface Water</option>
@@ -103,7 +103,7 @@ return (
                                 <select 
                                     name="tableCondition" 
                                     value={tableCondition} 
-                                    onChange={e => setTableCondition(e.target.value)}
+                                    onChange={evt => setTableCondition(evt.target.value)}
                                 >
                                     <option value="">All</option>
                                     <option value="Normal">Normal</option>
@@ -113,7 +113,6 @@ return (
                             </label>
                         </div>
                     </div>
-
                     {filteredReports.length > 0 ? (
                         <table>
                             <thead>
@@ -153,7 +152,7 @@ return (
                                 Get AI Suggestion
                             </button>
                             {aiInsights[r.id] && (
-                                <p><strong>AI Suggestion:</strong> {aiInsights[r.id]}</p>
+                                <p className={styles.aiSuggestion}><strong>AI Suggestion:</strong> {aiInsights[r.id]}</p>
                             )}
                         </li>
                     ))}

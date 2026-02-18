@@ -10,14 +10,14 @@ const ReportList = ( {reports} ) => {
     // Filter reports for the logged-in user
     const myReports = reports.filter(report => report.report_author_id === user.id);
 
-    const [statusFilter, setStatusFilter] = useState("All");
-
      // Sort by most recent updated_at or created_at (whichever is later)
     const sortedReports = [...myReports].sort((a, b) => {
         const aDate = new Date(a.updated_at || a.created_at);
         const bDate = new Date(b.updated_at || b.created_at);
         return bDate - aDate;
     });
+
+    const [statusFilter, setStatusFilter] = useState("All");
 
     const filteredReports = statusFilter === "All" ? sortedReports
       : sortedReports.filter((report) => report.status === statusFilter);
@@ -43,7 +43,7 @@ const ReportList = ( {reports} ) => {
                         <select
                             id="status-filter"
                             value={statusFilter}
-                            onChange={(e) => setStatusFilter(e.target.value)}
+                            onChange={(evt) => setStatusFilter(evt.target.value)}
                         >
                             <option value="All">All</option>
                             <option value="Unresolved">Unresolved</option>

@@ -75,6 +75,12 @@
     margin-top: 0.5rem;
 }
 
+.aiSuggestion {
+    margin-top: 0.5rem;
+    color: var(--primary-blue);
+    font-size: 0.9rem;
+}
+
 .dashHeader {
     display: flex;
     justify-content: space-between;
@@ -87,6 +93,18 @@
     grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
     margin-bottom: 2rem;
+}
+
+.filtersRow select {
+    min-width: 180px;
+    max-width: 220px;
+}
+
+.filtersRow label {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    gap: 0.25rem;
 }
 
 @media (max-width: 700px) {
