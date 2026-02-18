@@ -35,20 +35,22 @@ const CommunityPage = (props) => {
             </div>
             
             {filteredReports.length > 0 ? (
-                filteredReports.map((report) => (
-                    <Link key={report.id} to={`/reports/${report.id}`}>
-                        <article className={styles.reportCard}>
-                            <header>
-                                <h2 className={styles.reportTitle}>{report.title}</h2>
-                                <p className={styles.reportMeta}>
-                                {new Date(report.updated_at).getTime() === new Date(report.created_at).getTime()
-                                    ? `Posted on ${new Date(report.created_at).toLocaleDateString()} by ${report.author_username}`
-                                    : `Updated on ${new Date(report.updated_at).toLocaleDateString()} by ${report.author_username}`}
-                                </p>
-                            </header>
-                        </article>
-                    </Link>
-                ))
+                <div className={styles.grid}>
+                    {filteredReports.map((report) => (
+                        <Link key={report.id} to={`/reports/${report.id}`}>
+                            <article className={styles.reportCard}>
+                                <header>
+                                    <h2 className={styles.reportTitle}>{report.title}</h2>
+                                    <p className={styles.reportMeta}>
+                                    {new Date(report.updated_at).getTime() === new Date(report.created_at).getTime()
+                                        ? `Posted on ${new Date(report.created_at).toLocaleDateString()} by ${report.author_username}`
+                                        : `Updated on ${new Date(report.updated_at).toLocaleDateString()} by ${report.author_username}`}
+                                    </p>
+                                </header>
+                            </article>
+                        </Link>
+                    ))}
+                </div>
 
             ) : (
                 <p className={styles.emptyMessage}>There are no reports yet.</p>

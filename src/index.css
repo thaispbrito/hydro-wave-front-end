@@ -237,11 +237,11 @@ form {
     gap: 0.5rem;
 } */
 
-/* form > FormField {
+form > FormField {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-} */
+}
 
 article {
     background: white;

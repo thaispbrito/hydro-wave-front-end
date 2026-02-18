@@ -14,8 +14,9 @@
     background: var(--background-white);
     padding: 1.5rem;
     border-radius: 12px;
+    gap: 2rem;
     box-shadow: 0 4px 15px rgba(0, 119, 182, 0.08);
-    margin-bottom: 1rem;
+    margin-bottom: 0;
     border-left: 6px solid var(--primary-blue);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -73,4 +74,24 @@
 .toolbar {
     display: flex;
     gap: 1.5rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* .grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+} */
+
+@media (max-width: 900px) {
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
 }

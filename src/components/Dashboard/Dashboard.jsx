@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { UserContext } from "../../contexts/UserContext";
 import * as reportService from '../../services/reportService';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
+import styles from './Dashboard.module.css';
 
 const Dashboard = () => {
     const [reports, setReports] = useState([]);
@@ -37,6 +38,8 @@ const Dashboard = () => {
         count: filteredReports.filter(r => r.condition === cond).length,
     }));
 
+    const hasChartData = chartData.some(d => d.count > 0);
+
     const handleFilterChange = (e) => {
         setFilters({ ...filters, [e.target.name]: e.target.value });
     };
@@ -55,90 +58,90 @@ const Dashboard = () => {
         }
     };
 
-    return (
-        <main>
-            <h1>Dashboard</h1>
-
-            {/* Filters */}
-            <section>
-            <label>
-                Condition:
-                <select name="condition" value={filters.condition} onChange={handleFilterChange}>
-                <option value="">All</option>
-                <option value="Normal">Normal</option>
-                <option value="Abnormal">Abnormal</option>
-                <option value="Critical">Critical</option>
-                </select>
-            </label>
-            <label>
-                Water Source:
-                <select name="water_source" value={filters.water_source} onChange={handleFilterChange}>
-                <option value="">All</option>
-                <option value="Surface Water">Surface Water</option>
-                <option value="Groundwater">Groundwater</option>
-                <option value="Rainwater">Rainwater</option>
-                <option value="Stormwater">Stormwater</option>
-                </select>
-            </label>
-            </section>
-
-            {/* Chart */}
-            <section style={{ marginTop: '2rem' }}>
-                <h2>Reports by Condition</h2>
-                {chartData && chartData.length > 0 && (
-                    <div style={{ width: '100%', minWidth: 300, height: 300 }}>
+return (
+        <main className={styles.container}>
+            <h1>Water Data Insights</h1>
+            <div className={styles.card}>
+                <div className={styles.dashHeader}>
+                    <h2 className={styles.sectionTitle}>Number of Reports by Condition</h2>
+                    <div className={styles.filtersRow}>
+                        <label>
+                            Condition:
+                            <select name="condition" value={filters.condition} onChange={handleFilterChange}>
+                                <option value="">All</option>
+                                <option value="Normal">Normal</option>
+                                <option value="Abnormal">Abnormal</option>
+                                <option value="Critical">Critical</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+                {/* Chart */}
+                <div className={styles.chartContainer}>
+                    {hasChartData ? (
                         <ResponsiveContainer width="100%" height={300}>
                             <BarChart data={chartData}>
                                 <XAxis dataKey="condition" />
-                                <YAxis allowDecimals={false} />
+                                <YAxis allowDecimals={false} label={{ value: "Report Count", angle: -90, position: "insideLeft", offset: 20, dy: 65}}/>
                                 <Tooltip />
-                                <Bar dataKey="count" fill="#8884d8" />
+                                <Bar dataKey="count" fill="#0077b6" />
                             </BarChart>
                         </ResponsiveContainer>
+                    ) : (
+                        <p>No data available to display chart.</p>
+                    )}
+                </div>
+                {/* Table */}
+                <div className={styles.tableSection}>
+                    <div className={styles.dashHeader}>
+                        <h2 className={styles.sectionTitle}>Community Reports ({filteredReports.length})</h2>
+                        <div className={styles.filtersRow}>
+                            <label>
+                                Water Source:
+                                <select name="water_source" value={filters.water_source} onChange={handleFilterChange}>
+                                    <option value="">All</option>
+                                    <option value="Surface Water">Surface Water</option>
+                                    <option value="Groundwater">Groundwater</option>
+                                    <option value="Rainwater">Rainwater</option>
+                                    <option value="Stormwater">Stormwater</option>
+                                </select>
+                            </label>
+                        </div>
                     </div>
-                )}
-                {(!chartData || chartData.length === 0) && (
-                    <p>No data available to display chart.</p>
-                )}
-            </section>
 
-            {/* Table */}
-            <section>
-                <br />
-                <h2>Reports ({filteredReports.length})</h2>
-                {filteredReports.length > 0 ? (
-                    <table border="1" cellPadding="5">
-                        <thead>
-                            <tr>
-                                <th>Title</th>
-                                <th>Date</th>
-                                <th>Water Source</th>
-                                <th>Condition</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {filteredReports.map(r => (
-                                <tr key={r.id}>
-                                    <td>{r.title}</td>
-                                    <td>{new Date(r.reported_at).toLocaleDateString()}</td>
-                                    <td>{r.water_source}</td>
-                                    <td>{r.condition}</td>
+                    {filteredReports.length > 0 ? (
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Date</th>
+                                    <th>Water Source</th>
+                                    <th>Condition</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                ) : (
-                    <p>No reports available to display.</p>
-                )}
-            </section>
-
-            {/* My reports section to get AI suggestions */}
-            <section style={{ marginTop: '2rem' }}>
-                <h2>My Reports (Get AI Suggestions)</h2>
+                            </thead>
+                            <tbody>
+                                {filteredReports.map(r => (
+                                    <tr key={r.id}>
+                                        <td>{r.title}</td>
+                                        <td>{new Date(r.reported_at).toLocaleDateString()}</td>
+                                        <td>{r.water_source}</td>
+                                        <td>{r.condition}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    ) : (
+                        <p>No reports available to display.</p>
+                    )}
+                </div>
+            </div>
+            {/* AI Section for user's own reports */}
+            <div className={styles.aiSection}>
+                <h2 className={styles.sectionTitle}>My Reports - Get AI Suggestions</h2>
                 {myReports.length === 0 && <p>You have not submitted any reports yet.</p>}
-                <ul>
+                <ul className={styles.grid}>
                     {myReports.map(r => (
-                        <li key={r.id} style={{ marginBottom: '1rem' }}>
+                        <li key={r.id}>
                             <strong>{r.title}</strong> ({r.condition})
                             <br />
                             <button onClick={() => handleGetInsight(r.id)}>
@@ -150,9 +153,7 @@ const Dashboard = () => {
                         </li>
                     ))}
                 </ul>
-            </section>
-
-
+            </div>
         </main>
     );
 };

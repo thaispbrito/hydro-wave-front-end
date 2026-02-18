@@ -55,42 +55,23 @@ const ReportList = ( {reports} ) => {
                 </div>
             </div>
 
-
-            {/* <section className={styles.toolbar}>
-                <div className={styles.filterGroup}>
-                    <label className={styles.label} htmlFor="status-filter">
-                        Filter by status
-                    </label>
-
-                    <select
-                        className={styles.select}
-                        id="status-filter"
-                        value={statusFilter}
-                        onChange={(e) => setStatusFilter(e.target.value)}
-                    >
-                        <option value="All">All</option>
-                        <option value="Unresolved">Unresolved</option>
-                        <option value="Resolved">Resolved</option>
-                        <option value="Dismissed/Invalid">Dismissed/Invalid</option>
-                    </select>
-                </div>
-            </section> */}
-
             {filteredReports.length > 0 ? (
-                filteredReports.map((report) => (
-                    <Link key={report.id} to={`/reports/${report.id}`}>
-                        <article className={styles.reportCard}>
-                            <header>
-                                <h2 className={styles.reportTitle}>{report.title}</h2>
-                                <p className={styles.reportMeta}>
-                                    {new Date(report.updated_at).getTime() === new Date(report.created_at).getTime()
-                                        ? `Posted on ${new Date(report.created_at).toLocaleDateString()}`
-                                        : `Updated on ${new Date(report.updated_at).toLocaleDateString()}`}
-                                </p>
-                            </header>
-                        </article>
-                    </Link>
-                ))
+                <div className={styles.grid}>
+                    {filteredReports.map((report) => (
+                        <Link key={report.id} to={`/reports/${report.id}`}>
+                            <article className={styles.reportCard}>
+                                <header>
+                                    <h2 className={styles.reportTitle}>{report.title}</h2>
+                                    <p className={styles.reportMeta}>
+                                        {new Date(report.updated_at).getTime() === new Date(report.created_at).getTime()
+                                            ? `Posted on ${new Date(report.created_at).toLocaleDateString()}`
+                                            : `Updated on ${new Date(report.updated_at).toLocaleDateString()}`}
+                                    </p>
+                                </header>
+                            </article>
+                        </Link>
+                    ))}
+                </div>
             ) : (
                 <p className={styles.emptyMessage}>No reports found.</p>
             )}
