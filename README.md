@@ -64,8 +64,8 @@ Whether tracking a single water source or participating in broader community obs
 
 ## :globe_with_meridians: External Resources and Attributions
 
-* [Recharts Documentation](https://recharts.github.io/)
-* [Leaflet Documentation](https://leafletjs.com/reference.html)
+* [Recharts Library](https://recharts.github.io/)
+* [Leaflet Library](https://leafletjs.com/reference.html)
 * [Nominatim (OpenStreetMap)](https://nominatim.openstreetmap.org/)
 * [Cloudinary](https://cloudinary.com/)
 * [Gemini API](https://ai.google.dev/gemini-api/docs)
