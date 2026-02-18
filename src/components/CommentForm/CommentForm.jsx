@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router';
 import * as reportService from '../../services/reportService';
+import styles from './CommentForm.module.css';
 
 const CommentForm = (props) => {
     const [formData, setFormData] = useState({ text: '' });
@@ -64,19 +65,52 @@ const CommentForm = (props) => {
         setFormData({ text: '' });
     };
 
+    // NEW
+    const handleCancel = (evt) => {
+        evt.preventDefault();
+        if (reportId) {
+            navigate(`/reports/${reportId}`);
+        }
+    };
 
-    return (
+    return commentId ? (
+        <section className={styles.commentSection}>
+            <form onSubmit={handleSubmit}>
+                <label htmlFor='text-input'>Update comment:</label>
+                <textarea
+                    required
+                    name='text'
+                    id='text-input'
+                    value={formData.text}
+                    onChange={handleChange}
+                />
+                <div className={styles.buttonGroup}>
+                    <button type='submit' className={styles.submitButton}>
+                        Submit
+                    </button>
+                    <button
+                        type='button'
+                        className={styles.cancelButton}
+                        onClick={handleCancel}
+                    >
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </section>
+    ) : (
         <form onSubmit={handleSubmit}>
             <label htmlFor='text-input'>Your comment:</label>
             <textarea
                 required
-                type='text'
                 name='text'
                 id='text-input'
                 value={formData.text}
                 onChange={handleChange}
             />
-            <button type='submit'>SUBMIT COMMENT</button>
+            <button type='submit' className={styles.submitButton}>
+                Submit
+            </button>
         </form>
     );
 };

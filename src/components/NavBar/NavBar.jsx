@@ -32,7 +32,7 @@ const NavBar = () => {
                             </li>
                             <li>
                                 <Link to='/dashboard'>
-                                    Dashboard
+                                    Insights
                                 </Link>
                             </li>
                             <li>

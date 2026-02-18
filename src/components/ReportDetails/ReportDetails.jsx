@@ -4,6 +4,7 @@ import { UserContext } from '../../contexts/UserContext';
 import * as reportService from '../../services/reportService';
 import CommentForm from '../CommentForm/CommentForm';
 import LocationViewer from '../LocationViewer/LocationViewer';
+import styles from './ReportDetails.module.css';
 
 const ReportDetails = (props) => {
 
@@ -33,108 +34,165 @@ const ReportDetails = (props) => {
 
     if (!report) return <main>Loading...</main>;
 
-    return (
-        <main>
-            <section>
-                <header>
-                    <h1>{report.title}</h1>
-                    {/* <p>
-                        {`${report.author_username} posted on
-                        ${new Date(report.created_at).toLocaleDateString()}`}
-                    </p> */}
+ // Map view mode
+    if (showMap) {
+        return (
+            <main className={styles.container}>
+                <div className={styles.mapPickerMode}>
+                    <div className={styles.mapPickerHeader}>
+                        <h2>📍 Location Map</h2>
+                        <p>Viewing the location for this report</p>
+                    </div>
+                    <div className={styles.mapContainer} style={{ height: '400px' }}>
+                        <LocationViewer
+                            lat={report.location_lat}
+                            lng={report.location_long}
+                            locationName={report.location_name}
+                            height="400px"
+                            zoom={15}
+                            draggable={true}
+                            scrollWheelZoom={true}
+                            zoomControl={true}
+                        />
+                    </div>
 
-                    <p>
+                    {/* Location info under the map*/}
+                    {(report.location_lat || report.location_name) && (
+                        <div className={styles.mapPickerInfo}>
+                            {report.location_lat && report.location_long && (
+                                <p>
+                                    <strong>Coordinates:</strong>{' '}
+                                    {typeof report.location_lat === 'number'
+                                        ? report.location_lat.toFixed(5)
+                                        : report.location_lat},{' '}
+                                    {typeof report.location_long === 'number'
+                                        ? report.location_long.toFixed(5)
+                                        : report.location_long}
+                                </p>
+                            )}
+                            {report.location_name && (
+                                <p><strong>Location:</strong> {report.location_name}</p>
+                            )}
+                        </div>
+                    )}
+
+                    <div style={{ marginTop: '1rem', textAlign: 'center' }}>
+                        <a
+                            href={`https://www.openstreetmap.org/?mlat=${report.location_lat}&mlon=${report.location_long}#map=15/${report.location_lat}/${report.location_long}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{ color: 'var(--primary-blue)', textDecoration: 'underline' }}
+                        >
+                            Open in OpenStreetMap
+                        </a>
+                    </div>
+                    <div className={styles.mapPickerActions}>
+                        <button
+                            type="button"
+                            onClick={() => setShowMap(false)}
+                        >
+                            Close Map
+                        </button>
+                    </div>
+                </div>
+            </main>
+        );
+    }
+
+    // Normal details view
+    return (
+        <main className={styles.container}>
+            <section className={styles.reportCard}>
+                <header>
+                    <h1 className={styles.title}>{report.title}</h1>
+                    <p className={styles.meta}>
                         {new Date(report.updated_at).getTime() === new Date(report.created_at).getTime()
                             ? `Posted on ${new Date(report.created_at).toLocaleDateString()} by ${report.author_username}`
                             : `Updated on ${new Date(report.updated_at).toLocaleDateString()} by ${report.author_username}`}
                     </p>
-                    {report.report_author_id === user.id && (
-                        <>
-                            <Link to={`/reports/${reportId}/edit`}>Edit</Link>
-                            
-                            <button onClick={() => props.handleDeleteReport(reportId)}>
-                                Delete
-                            </button>
-                        </>
-                    )}
                 </header>
-                <p>Date and Time: {report.reported_at}</p>
-                <p>Source Type: {report.water_source}</p>
-                <p>Feature Type: {report.water_feature}</p>
-                <p>Location: 🏙 {report.location_name} (📍 {report.location_lat}, {report.location_long})</p>
-
-                <button
-                    type="button"
-                    onClick={() => setShowMap(prev => !prev)}
-                    style={{ marginBottom: '1rem' }}
-                    >
-                        
-                    {showMap ? 'Hide Map' : 'Open Map'}
-                </button>
-
-                {showMap && (
-                    <LocationViewer
-                        lat={report.location_lat}
-                        lng={report.location_long}
-                        locationName={report.location_name}
-                        height="400px"
-                        zoom={15}
-                    />
+                <div className={styles.detailsList}>
+                    <p><strong>Date and Time:</strong> {report.reported_at}</p>                 
+                    <p><strong>Source Type:</strong> {report.water_source}</p>
+                    <p><strong>Feature Type:</strong> {report.water_feature}</p>                   
+                    <p>
+                        <strong>Location:</strong> 🏙 {report.location_name} (📍 {report.location_lat}, {report.location_long}){' '}
+                        <a
+                            href="#"
+                            onClick={e => {
+                                e.preventDefault();
+                                setShowMap(true);
+                            }}
+                            style={{ color: 'var(--primary-blue)', textDecoration: 'underline', marginLeft: 8 }}
+                        >
+                            Open Map
+                        </a>
+                    </p>
+                </div>
+                <div className={styles.detailsList}>
+                    <p><strong>Observation:</strong> {report.observation}</p>                   
+                    <p><strong>Condition:</strong> {report.condition}</p>
+                    <p><strong>Status:</strong> {report.status}</p>            
+                </div>
+                {report.image_url && (
+                    <div className={styles.imagePreview}>
+                        <img src={report.image_url} alt={report.title} />
+                    </div>
                 )}
-        
-                {/* Option to open directly in OpenStreetMap */}
-                <a
-                    href={`https://www.openstreetmap.org/?mlat=${report.location_lat}&mlon=${report.location_long}#map=15/${report.location_lat}/${report.location_long}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Open in OpenStreetMap
-                </a>
 
-                <p>Observation: {report.observation}</p>
-                <p>Condition: {report.condition}</p>
-                <p>Status: {report.status}</p>
-                {/* <img src={report.image_url} width={300} alt={report.title} /> */}
-                {report.image_url && (<img src={report.image_url} width={300} alt={report.title} />)}
-
+                {report.report_author_id === user.id && (
+                    <div className={styles.buttonGroup}>
+                        <Link to={`/reports/${reportId}/edit`} className={styles.editLink}>
+                            <button type="button">Edit</button>
+                        </Link>
+                        <button className={styles.deleteButton} onClick={() => props.handleDeleteReport(reportId)}>
+                            Delete
+                        </button>
+                    </div>
+                )}
             </section>
-            <section>
+            <section className={styles.commentsSection}>
                 <h2>Comments</h2>
                 <CommentForm handleAddComment={handleAddComment} />
-
-                {!report.comments.length && <p>There are no comments.</p>}
-
+                               
+                {!report.comments.length && <p className={styles.commentMsg}>There are no comments yet.</p>}
                 {report.comments.map((comment) => (
-                    <article key={comment.comment_id}>
+                    <article key={comment.comment_id} className={styles.commentCard}>
                         <header>
-                            <p>
-                                {`${comment.comment_author_username}: ${comment.comment_text}`}
-                            </p>
-                            <p>
-                                {`Posted on ${new Date(comment.comment_created_at).toLocaleDateString()}`}
-                            </p>
+                            <div className={styles.commentHeader}>
+                                {comment.comment_author_username}
+                            </div>
+                            <div className={styles.commentMeta}>
+                                {new Date(comment.comment_updated_at).getTime() === new Date(comment.comment_created_at).getTime()
+                                    ? `Posted on ${new Date(comment.comment_created_at).toLocaleDateString()}`
+                                    : `Updated on ${new Date(comment.comment_updated_at).toLocaleDateString()}`}
+                            </div>
                         </header>
-                        <p>{comment.text}</p>
+                        <p>{comment.comment_text}</p>
 
-                        {/* Comment owners can edit and delete comments.*/}
-                        {/* The owner of the report can also delete any comments attached to their report. */}
+
+                        {/* <div className={styles.commentMeta}>
+                            {new Date(comment.comment_updated_at).getTime() === new Date(comment.comment_created_at).getTime()
+                                ? `Posted on ${new Date(comment.comment_created_at).toLocaleDateString()}`
+                                : `Updated on ${new Date(comment.comment_updated_at).toLocaleDateString()}`}
+                        </div>             */}
+
+                        
                         {user && (
-                            <>
+                            <div className={styles.commentActions}>
                                 {comment.comment_author_username === user.username && (
-                                    <Link to={`/reports/${reportId}/comments/${comment.comment_id}/edit`}>
-                                        Edit
+                                    <Link to={`/reports/${reportId}/comments/${comment.comment_id}/edit`} className={styles.editLink}>
+                                        <button type="button">Edit</button>
                                     </Link>
                                 )}
-
                                 {(comment.comment_author_username === user.username ||
                                     report.report_author_id === user.id) && (
-                                    <button onClick={() => handleDeleteComment(comment.comment_id)}>
+                                    <button className={styles.deleteButton} onClick={() => handleDeleteComment(comment.comment_id)}>
                                         Delete
                                     </button>
                                 )}
-                            </>
+                            </div>
                         )}
-
                     </article>
                 ))}
             </section>

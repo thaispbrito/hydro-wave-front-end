@@ -1,0 +1,60 @@
+.submitButton,
+.cancelButton {
+    width: fit-content;
+    padding: 12px 40px;
+}
+
+.submitButton {
+    align-self: center;
+}
+
+.buttonGroup {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    align-items: center;
+} 
+
+/* .buttonGroup {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center;
+    gap: 1.5rem;
+} */
+
+
+/* form {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+} */
+
+form {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 1.5rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background: var(--background-light);
+    border-radius: 10px;
+    padding: 1.5rem 1rem;
+    box-shadow: 0 2px 8px rgba(0,119,182,0.07);
+}
+
+.commentSection {
+    background: var(--background-white);
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 119, 182, 0.08);
+    width: 100%;
+    max-width: 800px; 
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+}

@@ -214,7 +214,7 @@ const ReportForm = ( { handleAddReport, handleUpdateReport } ) => {
                                 value={formData.water_source}
                                 onChange={handleChange}
                             >
-                                <option value=''>Select an option</option>
+                                <option value=''>Select option</option>
                                 <option value='Surface Water'>Surface Water</option>
                                 <option value='Groundwater'>Groundwater</option>
                                 <option value='Rainwater'>Rainwater</option>
@@ -232,7 +232,7 @@ const ReportForm = ( { handleAddReport, handleUpdateReport } ) => {
                                 value={formData.water_feature}
                                 onChange={handleChange}
                             >
-                                <option value=''>Select an option</option>
+                                <option value=''>Select option</option>
                                 <option value='River'>River</option>
                                 <option value='Creek/Stream'>Creek/Stream</option>
                                 <option value='Lake'>Lake</option>
@@ -319,7 +319,7 @@ const ReportForm = ( { handleAddReport, handleUpdateReport } ) => {
                                 value={formData.condition}
                                 onChange={handleChange}
                             >
-                                <option value=''>Select and option</option>
+                                <option value=''>Select option</option>
                                 <option value='Normal'>Normal</option>
                                 <option value='Abnormal'>Abnormal</option>
                                 <option value='Critical'>Critical</option>
@@ -335,7 +335,7 @@ const ReportForm = ( { handleAddReport, handleUpdateReport } ) => {
                                 value={formData.status}
                                 onChange={handleChange}
                             >
-                                <option value=''>Select an option</option>
+                                <option value=''>Select option</option>
                                 <option value='Unresolved'>Unresolved</option>
                                 <option value='Resolved'>Resolved</option>
                                 <option value='Dismissed/Invalid'>Dismissed/Invalid</option>

@@ -1,0 +1,52 @@
+.container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.addButton {
+    margin-bottom: 2rem;
+}
+
+.reportCard {
+    background: var(--background-white);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 119, 182, 0.08);
+    margin-bottom: 1rem;
+    border-left: 6px solid var(--primary-blue);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.reportCard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 119, 182, 0.12);
+}
+
+.reportTitle {
+    color: var(--primary-blue);
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.reportMeta {
+    color: var(--text-gray);
+    font-size: 1rem;
+    margin-bottom: 0;
+}
+
+.emptyMessage {
+    color: var(--text-gray);
+    font-size: 1.1rem;
+    margin-top: 2rem;
+}
+
+.listHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 2rem;
+}
