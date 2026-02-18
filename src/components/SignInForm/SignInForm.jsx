@@ -60,7 +60,7 @@ const SignInForm = () => {
                     />
                 </div>
                 <div>
-                    <button type='submit'>Sign In</button>
+                    <button className={styles.submitButton} type='submit'>Sign In</button>
                 </div>
             </form>
             <p className={styles.signupLink}>

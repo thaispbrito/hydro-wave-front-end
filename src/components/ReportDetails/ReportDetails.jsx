@@ -142,8 +142,8 @@ const ReportDetails = (props) => {
 
                 {report.report_author_id === user.id && (
                     <div className={styles.buttonGroup}>
-                        <Link to={`/reports/${reportId}/edit`} className={styles.editLink}>
-                            <button type="button">Edit</button>
+                        <Link to={`/reports/${reportId}/edit`}>
+                            <button type="button" className={styles.editButton}>Edit</button>
                         </Link>
                         <button className={styles.deleteButton} onClick={() => props.handleDeleteReport(reportId)}>
                             Delete
@@ -152,7 +152,7 @@ const ReportDetails = (props) => {
                 )}
             </section>
             <section className={styles.commentsSection}>
-                <h2>Comments</h2>
+                <h2 className={styles.commentsTitle}>Comments</h2>
                 <CommentForm handleAddComment={handleAddComment} />
                                
                 {!report.comments.length && <p className={styles.commentMsg}>There are no comments yet.</p>}
@@ -169,20 +169,12 @@ const ReportDetails = (props) => {
                             </div>
                         </header>
                         <p>{comment.comment_text}</p>
-
-
-                        {/* <div className={styles.commentMeta}>
-                            {new Date(comment.comment_updated_at).getTime() === new Date(comment.comment_created_at).getTime()
-                                ? `Posted on ${new Date(comment.comment_created_at).toLocaleDateString()}`
-                                : `Updated on ${new Date(comment.comment_updated_at).toLocaleDateString()}`}
-                        </div>             */}
-
-                        
+                       
                         {user && (
                             <div className={styles.commentActions}>
                                 {comment.comment_author_username === user.username && (
-                                    <Link to={`/reports/${reportId}/comments/${comment.comment_id}/edit`} className={styles.editLink}>
-                                        <button type="button">Edit</button>
+                                    <Link to={`/reports/${reportId}/comments/${comment.comment_id}/edit`} >
+                                        <button type="button" className={styles.editButton}>Edit</button>
                                     </Link>
                                 )}
                                 {(comment.comment_author_username === user.username ||

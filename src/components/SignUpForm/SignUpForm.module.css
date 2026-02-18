@@ -29,12 +29,12 @@
     margin-bottom: 1rem;
 }
 
-.buttonGroup {
+/* .buttonGroup {
     display: flex;
     gap: 1rem;
     margin-top: 1rem;
     justify-content: center;
-}
+} */
 
 .cancelButton {
     background: transparent;
@@ -62,4 +62,7 @@
 
 .signinLink a:hover {
     text-decoration: underline;
+}
+.submitButton {
+    width: 100%;
 }

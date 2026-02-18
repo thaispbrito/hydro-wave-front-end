@@ -6,10 +6,8 @@ import styles from './Dashboard.module.css';
 
 const Dashboard = () => {
     const [reports, setReports] = useState([]);
-    const [filters, setFilters] = useState({
-        condition: '',
-        water_source: '',
-    });
+    const [chartWaterSource, setChartWaterSource] = useState('');
+    const [tableCondition, setTableCondition] = useState('');
 
     // State to store AI insights by report ID
     const [aiInsights, setAiInsights] = useState({});
@@ -24,25 +22,23 @@ const Dashboard = () => {
         fetchReports();
     }, []);
 
-    // Apply filters for condition and water source
-    const filteredReports = reports.filter(r => {
-        return (
-            (filters.condition ? r.condition === filters.condition : true) &&
-            (filters.water_source ? r.water_source === filters.water_source : true)
-        );
-    });
+    // Apply filter for water source
+    const chartReports = chartWaterSource
+        ? reports.filter(r => r.water_source === chartWaterSource)
+        : reports;
+
+    // Apply filter for condition    
+    const filteredReports = tableCondition
+        ? reports.filter(r => r.condition === tableCondition)
+        : reports;
 
     // Prepare chart data
     const chartData = ['Normal', 'Abnormal', 'Critical'].map(cond => ({
         condition: cond,
-        count: filteredReports.filter(r => r.condition === cond).length,
+        count: chartReports.filter(r => r.condition === cond).length,
     }));
 
     const hasChartData = chartData.some(d => d.count > 0);
-
-    const handleFilterChange = (e) => {
-        setFilters({ ...filters, [e.target.name]: e.target.value });
-    };
 
     // Filter reports authored by the current user
     const myReports = reports.filter(report => report.report_author_id === user.id);
@@ -60,18 +56,24 @@ const Dashboard = () => {
 
 return (
         <main className={styles.container}>
-            <h1>Water Data Insights</h1>
+            <h1>Water Report Insights</h1>
             <div className={styles.card}>
                 <div className={styles.dashHeader}>
                     <h2 className={styles.sectionTitle}>Number of Reports by Condition</h2>
                     <div className={styles.filtersRow}>
                         <label>
-                            Condition:
-                            <select name="condition" value={filters.condition} onChange={handleFilterChange}>
+                            Water Source:
+                            <select 
+                                name="chartWaterSource" 
+                                value={chartWaterSource} 
+                                onChange={e => setChartWaterSource(e.target.value)}
+                            >
                                 <option value="">All</option>
-                                <option value="Normal">Normal</option>
-                                <option value="Abnormal">Abnormal</option>
-                                <option value="Critical">Critical</option>
+                                <option value="Surface Water">Surface Water</option>
+                                <option value="Groundwater">Groundwater</option>
+                                <option value="Rainwater">Rainwater</option>
+                                <option value="Stormwater">Stormwater</option>
+                                <option value="Marine Water">Marine Water</option>
                             </select>
                         </label>
                     </div>
@@ -97,13 +99,16 @@ return (
                         <h2 className={styles.sectionTitle}>Community Reports ({filteredReports.length})</h2>
                         <div className={styles.filtersRow}>
                             <label>
-                                Water Source:
-                                <select name="water_source" value={filters.water_source} onChange={handleFilterChange}>
+                                Condition:
+                                <select 
+                                    name="tableCondition" 
+                                    value={tableCondition} 
+                                    onChange={e => setTableCondition(e.target.value)}
+                                >
                                     <option value="">All</option>
-                                    <option value="Surface Water">Surface Water</option>
-                                    <option value="Groundwater">Groundwater</option>
-                                    <option value="Rainwater">Rainwater</option>
-                                    <option value="Stormwater">Stormwater</option>
+                                    <option value="Normal">Normal</option>
+                                    <option value="Abnormal">Abnormal</option>
+                                    <option value="Critical">Critical</option>
                                 </select>
                             </label>
                         </div>
@@ -143,7 +148,7 @@ return (
                     {myReports.map(r => (
                         <li key={r.id}>
                             <strong>{r.title}</strong> ({r.condition})
-                            <br />
+                            <br /> 
                             <button onClick={() => handleGetInsight(r.id)}>
                                 Get AI Suggestion
                             </button>

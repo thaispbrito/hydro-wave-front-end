@@ -14,7 +14,7 @@
     border-radius: 16px;
     box-shadow: 0 10px 40px rgba(0, 119, 182, 0.15);
     width: 100%;
-    max-width: 500px;
+    max-width: 520px;
 }
 
 .welcomeTitle {
@@ -24,7 +24,7 @@
     margin-bottom: 0.5rem;
 }
 
-.subtitle {
+.subtext {
     font-size: 1.1rem;
     color: var(--text-gray);
     margin-bottom: 2rem;

@@ -76,7 +76,7 @@ const CommentForm = (props) => {
     return commentId ? (
         <section className={styles.commentSection}>
             <form onSubmit={handleSubmit}>
-                <label htmlFor='text-input'>Update comment:</label>
+                <label htmlFor='text-input'><strong>Update comment:</strong></label>
                 <textarea
                     required
                     name='text'
@@ -100,7 +100,7 @@ const CommentForm = (props) => {
         </section>
     ) : (
         <form onSubmit={handleSubmit}>
-            <label htmlFor='text-input'>Your comment:</label>
+            <label htmlFor='text-input'><strong>Your comment:</strong></label>
             <textarea
                 required
                 name='text'

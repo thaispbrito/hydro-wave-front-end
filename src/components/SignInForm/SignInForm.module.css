@@ -26,3 +26,7 @@
 .signupLink a:hover {
     text-decoration: underline;
 }
+
+.submitButton {
+    width: 100%;
+}

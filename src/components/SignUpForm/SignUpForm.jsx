@@ -83,10 +83,9 @@ return (
                             required
                         />
                     </div>
-                    <div className={styles.buttonGroup}>
-                        <button type="submit" disabled={isFormInvalid()}>Sign Up</button>
-                        <button type="button" className={styles.cancelButton} onClick={() => navigate('/')}>Cancel</button>
-                    </div>
+
+                    <button type="submit" className={styles.submitButton} disabled={isFormInvalid()}>Sign Up</button>
+
                 </form>
                 <p className={styles.signinLink}>
                     Already have an account? <Link to='/'>Sign in here</Link>

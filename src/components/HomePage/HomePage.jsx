@@ -17,12 +17,12 @@ const HomePage = () => {
 
             <div className={styles.contentCard}>
                 <h2 className={styles.welcomeTitle}>Welcome, {user.username}! 👋</h2>
-                <p className={styles.subtitle}>
+                <p className={styles.subtext}>
                     Ready to make a difference? Start monitoring water sources in your community.
                 </p>
 
                 <h3>🌊 Get Started</h3>
-                <p>Create a new water observation report to help track and protect local water resources.</p>
+                <p className={styles.subtext}>Create a new water observation report to help track and protect local water resources.</p>
                 <Link to='/reports/new'>
                     <button>+ New Water Report</button>
                 </Link>
