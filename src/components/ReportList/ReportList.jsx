@@ -3,14 +3,14 @@ import { useContext, useState } from 'react';
 import { UserContext } from '../../contexts/UserContext';
 import styles from './ReportList.module.css';
 
-const ReportList = ( {reports} ) => {
+const ReportList = ({ reports }) => {
 
     const { user } = useContext(UserContext);
 
     // Filter reports for the logged-in user
     const myReports = reports.filter(report => report.report_author_id === user.id);
 
-     // Sort by most recent updated_at or created_at (whichever is later)
+    // Sort by most recent updated_at or created_at (whichever is later)
     const sortedReports = [...myReports].sort((a, b) => {
         const aDate = new Date(a.updated_at || a.created_at);
         const bDate = new Date(b.updated_at || b.created_at);

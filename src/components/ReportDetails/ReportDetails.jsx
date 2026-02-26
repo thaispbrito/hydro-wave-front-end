@@ -29,7 +29,7 @@ const ReportDetails = (props) => {
 
     const handleDeleteComment = async (commentId) => {
         await reportService.deleteComment(reportId, commentId)
-        setReport({...report, comments: report.comments.filter((comment) => comment.comment_id !== commentId), });
+        setReport({ ...report, comments: report.comments.filter((comment) => comment.comment_id !== commentId), });
     };
 
     if (!report) return <main>Loading...</main>;
@@ -96,7 +96,7 @@ const ReportDetails = (props) => {
             </main>
         );
     }
-    
+
     // Normal details view
     return (
         <main className={styles.container}>
@@ -110,9 +110,9 @@ const ReportDetails = (props) => {
                     </p>
                 </header>
                 <div className={styles.detailsList}>
-                    <p><strong>Date and Time:</strong> {report.reported_at}</p>                 
+                    <p><strong>Date and Time:</strong> {report.reported_at}</p>
                     <p><strong>Source Type:</strong> {report.water_source}</p>
-                    <p><strong>Feature Type:</strong> {report.water_feature}</p>                   
+                    <p><strong>Feature Type:</strong> {report.water_feature}</p>
                     <p>
                         <strong>Location:</strong> 🏙 {report.location_name} (📍 {report.location_lat}, {report.location_long}){' '}
                         <a
@@ -128,16 +128,16 @@ const ReportDetails = (props) => {
                     </p>
                 </div>
                 <div className={styles.detailsList}>
-                    <p><strong>Observation:</strong> {report.observation}</p>                   
+                    <p><strong>Observation:</strong> {report.observation}</p>
                     <p><strong>Condition:</strong> {report.condition}</p>
-                    <p><strong>Status:</strong> {report.status}</p>            
+                    <p><strong>Status:</strong> {report.status}</p>
                 </div>
                 {report.image_url && (
                     <div className={styles.imagePreview}>
                         <img src={report.image_url} alt={report.title} />
                     </div>
                 )}
-                
+
                 {report.report_author_id === user.id && (
                     <div className={styles.buttonGroup}>
                         <Link to={`/reports/${reportId}/edit`}>
@@ -152,7 +152,7 @@ const ReportDetails = (props) => {
             <section className={styles.commentsSection}>
                 <h2 className={styles.commentsTitle}>Comments</h2>
                 <CommentForm handleAddComment={handleAddComment} />
-                               
+
                 {!report.comments.length && <p className={styles.commentMsg}>There are no comments yet.</p>}
                 {report.comments.map((comment) => (
                     <article key={comment.comment_id} className={styles.commentCard}>
@@ -167,7 +167,7 @@ const ReportDetails = (props) => {
                             </div>
                         </header>
                         <p>{comment.comment_text}</p>
-                       
+
                         {user && (
                             <div className={styles.commentActions}>
                                 {comment.comment_author_username === user.username && (
@@ -177,10 +177,10 @@ const ReportDetails = (props) => {
                                 )}
                                 {(comment.comment_author_username === user.username ||
                                     report.report_author_id === user.id) && (
-                                    <button className={styles.deleteButton} onClick={() => handleDeleteComment(comment.comment_id)}>
-                                        Delete
-                                    </button>
-                                )}
+                                        <button className={styles.deleteButton} onClick={() => handleDeleteComment(comment.comment_id)}>
+                                            Delete
+                                        </button>
+                                    )}
                             </div>
                         )}
                     </article>

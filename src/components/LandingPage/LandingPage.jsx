@@ -6,7 +6,7 @@ const LandingPage = () => {
     return (
         <main className={styles.container}>
             <div className="brandWrapper">
-                <img src={logo} alt="HydroWave logo" className="brandLogo"/>
+                <img src={logo} alt="HydroWave logo" className="brandLogo" />
                 <h1 className="brandTitle">HydroWave</h1>
             </div>
             <p className={styles.subtitle}>

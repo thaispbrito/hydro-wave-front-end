@@ -59,13 +59,13 @@ const Dashboard = () => {
             <h1>Water Report Insights</h1>
             <div className={styles.card}>
                 <div className={styles.dashHeader}>
-                    <h2 className={styles.sectionTitle}>Number of Reports by Condition</h2>
+                    <h2 className={styles.sectionTitle}>Reports by Condition</h2>
                     <div className={styles.filtersRow}>
                         <label>
                             Water Source:
-                            <select 
-                                name="chartWaterSource" 
-                                value={chartWaterSource} 
+                            <select
+                                name="chartWaterSource"
+                                value={chartWaterSource}
                                 onChange={evt => setChartWaterSource(evt.target.value)}
                             >
                                 <option value="">All</option>
@@ -84,7 +84,7 @@ const Dashboard = () => {
                         <ResponsiveContainer width="100%" height={300}>
                             <BarChart data={chartData}>
                                 <XAxis dataKey="condition" />
-                                <YAxis allowDecimals={false} label={{ value: "Report Count", angle: -90, position: "insideLeft", offset: 20, dy: 65}}/>
+                                <YAxis allowDecimals={false} label={{ value: "Report Count", angle: -90, position: "insideLeft", offset: 20, dy: 65 }} />
                                 <Tooltip />
                                 <Bar dataKey="count" fill="#0077b6" />
                             </BarChart>
@@ -100,9 +100,9 @@ const Dashboard = () => {
                         <div className={styles.filtersRow}>
                             <label>
                                 Condition:
-                                <select 
-                                    name="tableCondition" 
-                                    value={tableCondition} 
+                                <select
+                                    name="tableCondition"
+                                    value={tableCondition}
                                     onChange={evt => setTableCondition(evt.target.value)}
                                 >
                                     <option value="">All</option>
@@ -146,8 +146,9 @@ const Dashboard = () => {
                 <ul className={styles.grid}>
                     {myReports.map(r => (
                         <li key={r.id}>
-                            <strong>{r.title}</strong> ({r.condition})
-                            <br /> 
+                            <span className={styles.reportTitleLine}>
+                                <strong>{r.title}</strong> ({r.condition})
+                            </span>
                             <button onClick={() => handleGetInsight(r.id)}>
                                 Get AI Suggestion
                             </button>

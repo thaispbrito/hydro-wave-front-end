@@ -4,14 +4,14 @@ import * as reportService from '../../services/reportService';
 import LocationPicker from '../LocationPicker/LocationPicker';
 import styles from './ReportForm.module.css';
 
-const ReportForm = ( { handleAddReport, handleUpdateReport } ) => {
+const ReportForm = ({ handleAddReport, handleUpdateReport }) => {
     const { reportId } = useParams();
     const [formData, setFormData] = useState({
         title: '',
         reported_at: '',
         water_source: '',
         water_feature: '',
-        location_lat: '', 
+        location_lat: '',
         location_long: '',
         location_name: '',
         observation: '',
@@ -27,13 +27,13 @@ const ReportForm = ( { handleAddReport, handleUpdateReport } ) => {
 
     // Helper function
     const formatDateTimeLocal = (dateString) => {
-    const date = new Date(dateString);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
-    const day = String(date.getDate()).padStart(2, '0');
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-    return `${year}-${month}-${day}T${hours}:${minutes}`;
+        const date = new Date(dateString);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+        const day = String(date.getDate()).padStart(2, '0');
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        return `${year}-${month}-${day}T${hours}:${minutes}`;
     };
 
     useEffect(() => {
@@ -328,7 +328,7 @@ const ReportForm = ( { handleAddReport, handleUpdateReport } ) => {
                         <div>
                             <label htmlFor='status-input'>Status</label>
                             <select
-                                required 
+                                required
                                 name='status'
                                 id='status-input'
                                 value={formData.status}

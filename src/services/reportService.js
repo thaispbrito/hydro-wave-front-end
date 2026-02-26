@@ -126,7 +126,7 @@ const getAIInsight = async (reportId) => {
         const res = await fetch(`${import.meta.env.VITE_BACK_END_SERVER_URL}/ai/${reportId}`, {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
         });
-        return res.json(); 
+        return res.json();
     } catch (error) {
         console.log(error);
         return { insight: "Could not generate AI insight" };

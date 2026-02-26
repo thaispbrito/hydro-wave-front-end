@@ -35,7 +35,7 @@ const CommunityPage = (props) => {
                         <option value="Dismissed/Invalid">Dismissed/Invalid</option>
                     </select>
                 </div>
-            </div>           
+            </div>
             {filteredReports.length > 0 ? (
                 <div className={styles.grid}>
                     {filteredReports.map((report) => (
@@ -44,9 +44,9 @@ const CommunityPage = (props) => {
                                 <header>
                                     <h2 className={styles.reportTitle}>{report.title}</h2>
                                     <p className={styles.reportMeta}>
-                                    {new Date(report.updated_at).getTime() === new Date(report.created_at).getTime()
-                                        ? `Posted on ${new Date(report.created_at).toLocaleDateString()} by ${report.author_username}`
-                                        : `Updated on ${new Date(report.updated_at).toLocaleDateString()} by ${report.author_username}`}
+                                        {new Date(report.updated_at).getTime() === new Date(report.created_at).getTime()
+                                            ? `Posted on ${new Date(report.created_at).toLocaleDateString()} by ${report.author_username}`
+                                            : `Updated on ${new Date(report.updated_at).toLocaleDateString()} by ${report.author_username}`}
                                     </p>
                                 </header>
                             </article>

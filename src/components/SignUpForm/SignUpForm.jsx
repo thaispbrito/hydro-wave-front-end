@@ -45,7 +45,7 @@ const SignUpForm = () => {
                 <img src={logo} alt="HydroWave logo" className="brandLogo" />
                 <h1 className="brandTitle">HydroWave</h1>
             </div>
-            
+
             <div className={styles.formCard}>
                 <h1 className={styles.title}>Sign Up</h1>
                 {message && <p className={styles.errorMessage}>{message}</p>}
