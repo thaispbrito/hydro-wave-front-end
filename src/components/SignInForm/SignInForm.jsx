@@ -1,8 +1,7 @@
 import { useState, useContext } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate, Link } from 'react-router';
 import { signIn } from '../../services/authService';
 import { UserContext } from '../../contexts/UserContext';
-import { Link } from 'react-router';
 import styles from './SignInForm.module.css';
 
 const SignInForm = () => {

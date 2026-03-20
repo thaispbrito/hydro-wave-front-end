@@ -1,8 +1,7 @@
 import { useState, useContext } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate, Link } from 'react-router';
 import { signUp } from '../../services/authService';
 import { UserContext } from '../../contexts/UserContext';
-import { Link } from 'react-router';
 import logo from '../../assets/blue_logo.png';
 import styles from './SignUpForm.module.css';
 
