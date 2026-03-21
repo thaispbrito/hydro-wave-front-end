@@ -427,12 +427,7 @@ const ReportForm = ({ handleAddReport, handleUpdateReport }) => {
                             </label>
                         )}
                     </div>
-
-                    {/* <button type='submit' className={styles.submitButton}>
-                        {reportId ? 'Update' : 'Submit'}
-                    </button> */}
-
-
+                    
                     <div className={styles.buttonGroup}>
                         <button type='submit' className={styles.submitButton}>
                             {reportId ? 'Update' : 'Submit'}
@@ -446,7 +441,7 @@ const ReportForm = ({ handleAddReport, handleUpdateReport }) => {
                         </button>
                     </div>
 
-                </form>
+                </form>        
             </div>
         </main>
     );
