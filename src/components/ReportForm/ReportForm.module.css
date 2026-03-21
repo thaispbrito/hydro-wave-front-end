@@ -183,11 +183,22 @@
     margin-top: 0.5rem;
 }
 
-.submitButton {
+.submitButton,
+.cancelButton {
     width: fit-content;
-    margin: 1.5rem auto 0;
-    display: block;
     padding: 12px 40px;
+}
+
+.submitButton {
+    align-self: center;
+}
+
+.buttonGroup {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    align-items: center;
 }
 
 .mapPickerMode {
@@ -239,18 +250,6 @@
 
 .mapPickerActions button {
     width: fit-content;
-}
-
-.cancelButton {
-    background: transparent;
-    color: var(--primary-blue);
-    border: 2px solid var(--primary-blue);
-}
-
-.cancelButton:hover {
-    background: var(--background-light);
-    transform: none;
-    box-shadow: none;
 }
 
 @media (max-width: 600px) {

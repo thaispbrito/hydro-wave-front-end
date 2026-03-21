@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router';
+import { useParams, useNavigate } from 'react-router';
 import * as reportService from '../../services/reportService';
 import LocationPicker from '../LocationPicker/LocationPicker';
 import styles from './ReportForm.module.css';
@@ -18,6 +18,8 @@ const ReportForm = ({ handleAddReport, handleUpdateReport }) => {
         condition: '',
         status: '',
     });
+
+    const navigate = useNavigate();
 
     // Add a new useState for the image
     const [imageFile, setImageFile] = useState(null)
@@ -95,6 +97,15 @@ const ReportForm = ({ handleAddReport, handleUpdateReport }) => {
         } else {
             // Send the new data to the backend
             handleAddReport(data);
+        }
+    };
+
+    const handleCancel = (evt) => {
+        evt.preventDefault();
+        if (reportId) {
+            navigate(`/reports/${reportId}`);
+        } else {
+            navigate('/reports');
         }
     };
 
@@ -417,9 +428,24 @@ const ReportForm = ({ handleAddReport, handleUpdateReport }) => {
                         )}
                     </div>
 
-                    <button type='submit' className={styles.submitButton}>
+                    {/* <button type='submit' className={styles.submitButton}>
                         {reportId ? 'Update' : 'Submit'}
-                    </button>
+                    </button> */}
+
+
+                    <div className={styles.buttonGroup}>
+                        <button type='submit' className={styles.submitButton}>
+                            {reportId ? 'Update' : 'Submit'}
+                        </button>
+                        <button
+                            type='button'
+                            className={styles.cancelButton}
+                            onClick={handleCancel}
+                        >
+                            Cancel
+                        </button>
+                    </div>
+
                 </form>
             </div>
         </main>
