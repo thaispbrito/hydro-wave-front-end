@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
+import { Link } from 'react-router';
 import { UserContext } from "../../contexts/UserContext";
 import * as reportService from '../../services/reportService';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
@@ -84,9 +85,9 @@ const Dashboard = () => {
                         <ResponsiveContainer width="100%" height={300}>
                             <BarChart data={chartData}>
                                 <XAxis dataKey="condition" />
-                                <YAxis allowDecimals={false} label={{ value: "Report Count", angle: -90, position: "insideLeft", offset: 20, dy: 65 }} />
+                                <YAxis allowDecimals={false} label={{ value: "Report Count", angle: -90, position: "insideLeft", offset: 20, dy: 50 }} />
                                 <Tooltip />
-                                <Bar dataKey="count" fill="#0077b6" />
+                                <Bar dataKey="count" fill="var(--primary-blue)" />
                             </BarChart>
                         </ResponsiveContainer>
                     ) : (
@@ -121,15 +122,21 @@ const Dashboard = () => {
                                     <th>Date</th>
                                     <th>Water Source</th>
                                     <th>Condition</th>
+                                    <th>Author</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {filteredReports.map(r => (
                                     <tr key={r.id}>
-                                        <td>{r.title}</td>
+                                        <td>
+                                            <Link to={`/reports/${r.id}`} className={styles.reportTitleLink}>
+                                                <strong>{r.title}</strong>
+                                            </Link>
+                                        </td>
                                         <td>{new Date(r.reported_at).toLocaleDateString()}</td>
                                         <td>{r.water_source}</td>
                                         <td>{r.condition}</td>
+                                        <td>{r.author_username}</td>
                                     </tr>
                                 ))}
                             </tbody>
@@ -146,9 +153,9 @@ const Dashboard = () => {
                 <ul className={styles.grid}>
                     {myReports.map(r => (
                         <li key={r.id}>
-                            <span className={styles.reportTitleLine}>
+                            <Link to={`/reports/${r.id}`} className={styles.reportTitleLink}>
                                 <strong>{r.title}</strong> ({r.condition})
-                            </span>
+                            </Link>
                             <button onClick={() => handleGetInsight(r.id)}>
                                 Get AI Suggestion
                             </button>

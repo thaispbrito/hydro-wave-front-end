@@ -15,6 +15,7 @@
     box-shadow: 0 10px 40px rgba(0, 119, 182, 0.15);
     width: 100%;
     max-width: 520px;
+    margin-top: 0.5rem;
 }
 
 .welcomeTitle {

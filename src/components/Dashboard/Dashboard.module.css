@@ -11,6 +11,7 @@
     padding: 2.5rem;
     border-radius: 16px;
     box-shadow: 0 10px 40px rgba(0, 119, 182, 0.15);
+    margin-top: 1rem;
     margin-bottom: 2rem;
     width: 100%;
 }
@@ -77,25 +78,25 @@
 }
 
 .aiSection button {
-    margin-top: 0.5rem;
+    margin-top: 1rem;
 }
 
 .aiSuggestion {
-    margin-top: 0.5rem;
+    margin-top: 1rem;
     color: var(--primary-blue);
     font-size: 0.9rem;
 }
 
-.reportTitleLine {
+.reportTitleLink {
     display: block;
-    margin-bottom: 0.5rem;
+    color: var(--primary-dark);
 }
 
 .dashHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2rem;
+    margin-bottom: 0.5rem;
 }
 
 .grid {
