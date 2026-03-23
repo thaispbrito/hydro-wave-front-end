@@ -91,7 +91,7 @@ const Dashboard = () => {
                             </BarChart>
                         </ResponsiveContainer>
                     ) : (
-                        <p>No data available to display chart.</p>
+                        <p className={styles.noDataMsg}>No data available to display chart.</p>
                     )}
                 </div>
                 {/* Table */}
@@ -142,7 +142,7 @@ const Dashboard = () => {
                             </tbody>
                         </table>
                     ) : (
-                        <p>No reports available to display.</p>
+                        <p className={styles.noDataMsg}>No reports available to display.</p>
                     )}
                 </div>
             </div>

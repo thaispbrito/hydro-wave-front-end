@@ -51,6 +51,12 @@
     margin: 0 auto;
 }
 
+.noDataMsg {
+    text-align: center;
+    color: var(--text-gray);
+    margin-top: 2rem;
+}
+
 .aiSection {
     margin-top: 2rem;
     background: var(--background-light);

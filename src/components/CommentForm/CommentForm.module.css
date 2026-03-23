@@ -9,7 +9,7 @@
 }
 
 .cancelButton:hover {
-    background: var(--background-white);
+    background: var(--primary-light);
     color: var(--primary-blue);
 }
 

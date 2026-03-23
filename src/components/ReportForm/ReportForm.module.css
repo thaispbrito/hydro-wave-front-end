@@ -195,7 +195,7 @@
 }
 
 .cancelButton:hover {
-    background: var(--background-white);
+    background: #E3F4F9;
     color: var(--primary-blue);
 }
 
