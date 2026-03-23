@@ -8,6 +8,11 @@
     align-self: center;
 }
 
+.cancelButton:hover {
+    background: var(--background-white);
+    color: var(--primary-blue);
+}
+
 .buttonGroup {
     display: flex;
     justify-content: center;

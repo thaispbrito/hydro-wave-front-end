@@ -219,11 +219,11 @@ h2 {
     background-clip: text;
 }
 
-main {
+/* main {
     padding: 2rem;
     max-width: 1200px;
     margin: 0 auto;
-}
+} */
 
 form {
     display: flex;
@@ -252,6 +252,22 @@ section {
 p {
     color: var(--text-gray);
     margin-bottom: 0.5rem;
+}
+
+/* Footer */
+
+/* Add these new layout styles here */
+
+.appContainer {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.mainContent {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Responsive Design */

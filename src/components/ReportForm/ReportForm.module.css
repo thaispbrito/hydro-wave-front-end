@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     padding: 2rem;
+    width: 100%;
 }
 
 .formCard {
@@ -191,6 +192,11 @@
 
 .submitButton {
     align-self: center;
+}
+
+.cancelButton:hover {
+    background: var(--background-white);
+    color: var(--primary-blue);
 }
 
 .buttonGroup {
