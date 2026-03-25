@@ -219,12 +219,6 @@ h2 {
     background-clip: text;
 }
 
-/* main {
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-} */
-
 form {
     display: flex;
     flex-direction: column;
@@ -253,10 +247,6 @@ p {
     color: var(--text-gray);
     margin-bottom: 0.5rem;
 }
-
-/* Footer */
-
-/* Add these new layout styles here */
 
 .appContainer {
     display: flex;

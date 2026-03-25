@@ -1,11 +1,8 @@
 .footer {
     width: 100%;
-    /* padding: 1.5rem; */
     text-align: center;
     font-size: 0.9rem;
     background-color: transparent;
-    /* This pushes the footer to the bottom in a flex container */
-    /* margin-top: auto; */
     margin-bottom: 1rem;
 }
 

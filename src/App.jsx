@@ -52,34 +52,7 @@ const App = () => {
         navigate(`/reports/${reportId}`);
     };
 
-    // return (
-    //     <>
-    //         <NavBar />
-    //         <Routes>
-    //             <Route path='/' element={user ? <HomePage /> : <LandingPage />} />
-    //             {user ? (
-    //                 <>
-    //                     {/* Protected routes (available only to signed-in users) */}
-    //                     <Route path='/reports' element={<ReportList reports={reports} />} />
-    //                     <Route path="/community" element={<CommunityPage reports={reports} />} />
-    //                     <Route path='/reports/:reportId' element={<ReportDetails handleDeleteReport={handleDeleteReport} />} />
-    //                     <Route path='/reports/new' element={<ReportForm handleAddReport={handleAddReport} />} />
-    //                     <Route path='/reports/:reportId/edit' element={<ReportForm handleUpdateReport={handleUpdateReport} />} />
-    //                     <Route path='/reports/:reportId/comments/:commentId/edit' element={<CommentForm />} />
-    //                     <Route path="/dashboard" element={<Dashboard />} />
-    //                 </>
-    //             ) : (
-    //                 <>
-    //                     {/* Non-user routes (available only to guests) */}
-    //                     <Route path='/sign-up' element={<SignUpForm />} />
-    //                     <Route path='/sign-in' element={<SignInForm />} />
-    //                 </>
-    //             )}
-    //         </Routes>
-    //     </>
-    // );
-
-        return (
+    return (
         <div className="appContainer">
             <NavBar />
             <main className="mainContent">
